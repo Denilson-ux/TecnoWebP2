@@ -44,21 +44,19 @@ namespace ProyectoVenta.PRESENTACION
 
         private void cargarProductos()
         {
-            try
-            {
-                DataTable dt = objProducto.Buscar("");
+            Producto objProducto = new Producto();
 
-                ddlProducto.DataSource = dt;
-                ddlProducto.DataTextField = "nombre";
-                ddlProducto.DataValueField = "id_producto";
-                ddlProducto.DataBind();
-                ddlProducto.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
-            }
-            catch (Exception ex)
-            {
-                mostrarMensaje("Error al cargar productos: " + ex.Message, "danger");
-            }
+            // Trae todos los productos (pizzas) con su nombre y precio
+            DataTable dt = objProducto.Buscar("");   // ya devuelve nombre_producto, precio_base, etc.
+
+            ddlProducto.DataSource = dt;
+            ddlProducto.DataTextField = "nombre_producto";   // lo que verá el usuario
+            ddlProducto.DataValueField = "id_producto";      // clave interna
+            ddlProducto.DataBind();
+
+            ddlProducto.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
         }
+
 
 
 
