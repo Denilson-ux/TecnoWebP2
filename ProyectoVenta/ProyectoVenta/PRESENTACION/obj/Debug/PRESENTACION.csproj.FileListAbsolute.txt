@@ -1,0 +1,81 @@
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.dll.config
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\AjaxControlToolkit.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\DATOS.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\NEGOCIO.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\MySql.Data.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Google.Protobuf.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Zstandard.Net.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Compression.LZ4.Streams.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\BouncyCastle.Crypto.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Ubiety.Dns.Core.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Renci.SshNet.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Buffers.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Compression.LZ4.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Hash.xxHash.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Memory.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Numerics.Vectors.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\DATOS.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\NEGOCIO.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\MySql.Data.xml
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.CopyComplete
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Proyecto 2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.dll.config
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\AjaxControlToolkit.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\DATOS.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\NEGOCIO.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\MySql.Data.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Google.Protobuf.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Zstandard.Net.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Compression.LZ4.Streams.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\BouncyCastle.Crypto.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Ubiety.Dns.Core.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Renci.SshNet.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Buffers.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Compression.LZ4.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Hash.xxHash.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Memory.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Numerics.Vectors.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\DATOS.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\NEGOCIO.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\MySql.Data.xml
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.CopyComplete
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\CodigoFuente_ProyectoVenta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.dll.config
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\PRESENTACION.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\AjaxControlToolkit.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\DATOS.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\NEGOCIO.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\MySql.Data.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Google.Protobuf.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Zstandard.Net.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Compression.LZ4.Streams.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\BouncyCastle.Crypto.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Ubiety.Dns.Core.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\Renci.SshNet.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Buffers.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Compression.LZ4.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\K4os.Hash.xxHash.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Memory.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\System.Numerics.Vectors.dll
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\DATOS.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\NEGOCIO.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\bin\MySql.Data.xml
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\PRESENTACION\obj\Debug\PRESENTACION.csproj.CopyComplete
