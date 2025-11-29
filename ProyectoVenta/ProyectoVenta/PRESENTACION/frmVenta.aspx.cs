@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
@@ -90,8 +90,8 @@ namespace ProyectoVenta.PRESENTACION
 
                     if (rows.Length > 0)
                     {
-                        // Lee directamente el precio del producto
-                        decimal precio = Convert.ToDecimal(rows[0]["precio"]);
+                        // Lee directamente el precio del producto usando precio_base
+                        decimal precio = Convert.ToDecimal(rows[0]["precio_base"]);
                         txtPrecioUnit.Text = precio.ToString("0.00");
 
                         // Si aún no usas tamaños/tipos para pizzas, ocultas el panel
