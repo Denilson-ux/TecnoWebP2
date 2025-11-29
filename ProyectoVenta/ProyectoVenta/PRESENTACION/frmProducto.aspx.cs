@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -188,48 +188,39 @@ namespace ProyectoVenta.PRESENTACION
             {
                 GridViewRow row = gvProductos.SelectedRow;
 
-                // ID desde DataKeys (no desde celdas)
-                int idTmp = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
-                id_producto = idTmp;
+                // ID desde DataKeys
+                id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
-                // Ahora las columnas cambian de índice porque ya no está el ID visible
-                string c1 = row.Cells[0].Text; // Código
-                string c2 = row.Cells[1].Text; // Producto
-                string c3 = row.Cells[2].Text; // Tipo
-                string c4 = row.Cells[3].Text; // Precio
-                string c5 = row.Cells[4].Text; // Stock
+                // Obtener el DataTable completo para acceder a todas las columnas
+                DataTable dt = objProducto.Buscar("");
+                DataRow[] rows = dt.Select("id_producto = " + id_producto);
 
-                txtCodigo.Text = c1;
-                txtNombre.Text = c2;
-
-                string textoPrecio = c4;
-                textoPrecio = textoPrecio.Replace("€", "")
-                                         .Replace("Bs.", "")
-                                         .Replace("Bs", "")
-                                         .Trim();
-                txtPrecio.Text = textoPrecio;
-
-                txtStock.Text = c5;
-
-                for (int i = 0; i < ddlTipo.Items.Count; i++)
+                if (rows.Length > 0)
                 {
-                    if (ddlTipo.Items[i].Text == c3)
+                    DataRow dataRow = rows[0];
+
+                    // Asignar valores a los campos
+                    txtCodigo.Text = dataRow["codigo_producto"].ToString();
+                    txtNombre.Text = dataRow["nombre_producto"].ToString();
+                    txtPrecio.Text = Convert.ToDecimal(dataRow["precio_base"]).ToString("0.00");
+                    txtStock.Text = dataRow["stock"].ToString();
+
+                    // Seleccionar el tipo correcto por ID
+                    string idTipo = dataRow["id_tipo"].ToString();
+                    ddlTipo.SelectedValue = idTipo;
+
+                    // Si existe descripción en el DataTable, asignarla
+                    if (dt.Columns.Contains("descripcion") && dataRow["descripcion"] != DBNull.Value)
                     {
-                        ddlTipo.SelectedIndex = i;
-                        break;
+                        txtDescripcion.Text = dataRow["descripcion"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                mostrarMensaje("Error al seleccionar (SelectedIndexChanged): " + ex.Message, "danger");
+                mostrarMensaje("Error al seleccionar: " + ex.Message, "danger");
             }
         }
-
-
-
-
-
 
         private bool validarCampos()
         {
