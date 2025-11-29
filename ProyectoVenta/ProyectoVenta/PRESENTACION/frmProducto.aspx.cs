@@ -191,29 +191,40 @@ namespace ProyectoVenta.PRESENTACION
                 // ID desde DataKeys
                 id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
-                // Obtener el DataTable completo para acceder a todas las columnas
-                DataTable dt = objProducto.Buscar("");
-                DataRow[] rows = dt.Select("id_producto = " + id_producto);
+                // Leer directamente desde las celdas del GridView
+                string codigo = row.Cells[0].Text;        // Código
+                string nombreProducto = row.Cells[1].Text; // Producto
+                string nombreTipo = row.Cells[2].Text;     // Tipo (Pequeño, Mediano, Grande)
+                string precio = row.Cells[3].Text;         // Precio Base
+                string stock = row.Cells[4].Text;          // Stock
 
-                if (rows.Length > 0)
+                // Asignar valores a los campos
+                txtCodigo.Text = codigo;
+                txtNombre.Text = nombreProducto;
+                txtStock.Text = stock;
+
+                // Limpiar el precio de formato (eliminar comas, puntos de miles, etc.)
+                precio = precio.Replace(",", "."); // Convertir coma decimal a punto
+                decimal precioDecimal;
+                if (decimal.TryParse(precio, System.Globalization.NumberStyles.Any, 
+                    System.Globalization.CultureInfo.InvariantCulture, out precioDecimal))
                 {
-                    DataRow dataRow = rows[0];
+                    txtPrecio.Text = precioDecimal.ToString("0.00");
+                }
+                else
+                {
+                    txtPrecio.Text = "0.00";
+                }
 
-                    // Asignar valores a los campos
-                    txtCodigo.Text = dataRow["codigo_producto"].ToString();
-                    txtNombre.Text = dataRow["nombre_producto"].ToString();
-                    txtPrecio.Text = Convert.ToDecimal(dataRow["precio_base"]).ToString("0.00");
-                    txtStock.Text = dataRow["stock"].ToString();
-
-                    // Seleccionar el tipo correcto por ID
-                    string idTipo = dataRow["id_tipo"].ToString();
-                    ddlTipo.SelectedValue = idTipo;
-
-                    // Si existe descripción en el DataTable, asignarla
-                    if (dt.Columns.Contains("descripcion") && dataRow["descripcion"] != DBNull.Value)
-                    {
-                        txtDescripcion.Text = dataRow["descripcion"].ToString();
-                    }
+                // Seleccionar el tipo por nombre en el DropDownList
+                ListItem itemTipo = ddlTipo.Items.FindByText(nombreTipo);
+                if (itemTipo != null)
+                {
+                    ddlTipo.SelectedValue = itemTipo.Value;
+                }
+                else
+                {
+                    ddlTipo.SelectedIndex = 0; // Si no encuentra, seleccionar "-- Seleccione --"
                 }
             }
             catch (Exception ex)
