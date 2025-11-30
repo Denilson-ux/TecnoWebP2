@@ -216,6 +216,43 @@ BEGIN
     and dv.id_venta=OLD.id_venta;
 END $
 
+-- Nuevos procedimientos almacenados para manejo de productos
+
+DELIMITER $
+CREATE PROCEDURE insertarProducto(
+    IN p_nombre VARCHAR(100),
+    IN p_descripcion VARCHAR(255),
+    IN p_id_tipo INT,
+    IN p_precio DECIMAL(10,2),
+    IN p_stock INT,
+    IN p_imagen VARCHAR(255)
+)
+BEGIN
+    INSERT INTO productos (nombre, descripcion, id_tipo, precio, stock, imagen)
+    VALUES (p_nombre, p_descripcion, p_id_tipo, p_precio, p_stock, p_imagen);
+END $
+
+DELIMITER $
+CREATE PROCEDURE actualizarProducto(
+    IN p_id_producto INT,
+    IN p_nombre VARCHAR(100),
+    IN p_descripcion VARCHAR(255),
+    IN p_id_tipo INT,
+    IN p_precio DECIMAL(10,2),
+    IN p_stock INT,
+    IN p_imagen VARCHAR(255)
+)
+BEGIN
+    UPDATE productos
+    SET nombre = p_nombre,
+        descripcion = p_descripcion,
+        id_tipo = p_id_tipo,
+        precio = p_precio,
+        stock = p_stock,
+        imagen = p_imagen
+    WHERE id_producto = p_id_producto;
+END $
+
 
 call guardarCategoria ('Memoria RAM');
 call guardarCategoria ('CPU');
