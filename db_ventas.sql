@@ -221,7 +221,7 @@ BEGIN
 END ;;
 DELIMITER ;
 
--- Procedimientos para Productos
+-- Procedimientos para Productos (SIN campo imagen)
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarProducto`(
   IN p_id_producto INT,
@@ -229,8 +229,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarProducto`(
   IN p_descripcion VARCHAR(255),
   IN p_id_tipo INT,
   IN p_precio DECIMAL(10,2),
-  IN p_stock INT,
-  IN p_imagen VARCHAR(255)
+  IN p_stock INT
 )
 BEGIN
   UPDATE productos
@@ -238,8 +237,7 @@ BEGIN
       descripcion = p_descripcion,
       id_tipo = p_id_tipo,
       precio = p_precio,
-      stock = p_stock,
-      imagen = p_imagen
+      stock = p_stock
   WHERE id_producto = p_id_producto;
 END ;;
 DELIMITER ;
@@ -278,12 +276,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarProducto`(
   IN p_descripcion VARCHAR(255),
   IN p_id_tipo INT,
   IN p_precio DECIMAL(10,2),
-  IN p_stock INT,
-  IN p_imagen VARCHAR(255)
+  IN p_stock INT
 )
 BEGIN
-  INSERT INTO productos (nombre, descripcion, id_tipo, precio, stock, imagen)
-  VALUES (p_nombre, p_descripcion, p_id_tipo, p_precio, p_stock, p_imagen);
+  INSERT INTO productos (nombre, descripcion, id_tipo, precio, stock)
+  VALUES (p_nombre, p_descripcion, p_id_tipo, p_precio, p_stock);
 END ;;
 DELIMITER ;
 
