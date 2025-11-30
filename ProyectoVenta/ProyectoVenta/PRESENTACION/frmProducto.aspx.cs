@@ -192,80 +192,52 @@ namespace ProyectoVenta.PRESENTACION
                 // ID desde DataKeys
                 id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
-                // Leer directamente desde las celdas del GridView y DECODIFICAR entidades HTML
-                string codigo = HttpUtility.HtmlDecode(row.Cells[0].Text).Trim();
-                string nombreProducto = HttpUtility.HtmlDecode(row.Cells[1].Text).Trim();
-                string nombreTipo = HttpUtility.HtmlDecode(row.Cells[2].Text).Trim();
-                string precioTexto = HttpUtility.HtmlDecode(row.Cells[3].Text).Trim();
-                string stock = HttpUtility.HtmlDecode(row.Cells[4].Text).Trim();
+                // Obtener los datos directamente del DataTable original
+                DataTable dt = objProducto.Buscar("");
+                DataRow[] rows = dt.Select("id_producto = " + id_producto);
 
-                // Asignar valores a los campos
-                txtCodigo.Text = codigo;
-                txtNombre.Text = nombreProducto;
-                txtStock.Text = stock;
-
-                // Parseo robusto del precio - probar múltiples formatos
-                decimal precioDecimal = 0;
-                bool precioParseado = false;
-
-                // Limpiar caracteres comunes
-                string precioLimpio = precioTexto
-                    .Replace("Bs.", "")
-                    .Replace("Bs", "")
-                    .Replace("$", "")
-                    .Replace("&nbsp;", "")
-                    .Replace(" ", "")
-                    .Trim();
-
-                // Intentar parsear con coma como decimal (formato español: 25,00)
-                if (!precioParseado && precioLimpio.Contains(","))
+                if (rows.Length > 0)
                 {
-                    string precioConPunto = precioLimpio.Replace(".", "").Replace(",", ".");
-                    precioParseado = decimal.TryParse(precioConPunto,
-                        System.Globalization.NumberStyles.Any,
-                        System.Globalization.CultureInfo.InvariantCulture,
-                        out precioDecimal);
-                }
+                    DataRow dataRow = rows[0];
 
-                // Intentar parsear con punto como decimal (formato inglés: 25.00)
-                if (!precioParseado)
-                {
-                    precioParseado = decimal.TryParse(precioLimpio,
-                        System.Globalization.NumberStyles.Any,
-                        System.Globalization.CultureInfo.InvariantCulture,
-                        out precioDecimal);
-                }
+                    // Asignar valores directamente desde el DataTable
+                    txtCodigo.Text = dataRow["codigo_producto"].ToString();
+                    txtNombre.Text = dataRow["nombre_producto"].ToString();
+                    txtStock.Text = dataRow["stock"].ToString();
 
-                // Asignar el precio parseado
-                if (precioParseado && precioDecimal > 0)
-                {
-                    txtPrecio.Text = precioDecimal.ToString("0.00");
-                }
-                else
-                {
-                    txtPrecio.Text = "";
-                }
-
-                // Normalizar comparación del tipo (ignorar mayúsculas/minúsculas y espacios)
-                string tipoNormalizado = nombreTipo.ToLowerInvariant();
-                ListItem itemTipo = null;
-                
-                foreach (ListItem item in ddlTipo.Items)
-                {
-                    if (item.Text.Trim().ToLowerInvariant() == tipoNormalizado)
+                    // Obtener precio directamente como decimal
+                    if (dataRow["precio_base"] != DBNull.Value)
                     {
-                        itemTipo = item;
-                        break;
+                        decimal precio = Convert.ToDecimal(dataRow["precio_base"]);
+                        txtPrecio.Text = precio.ToString("0.00");
                     }
-                }
+                    else
+                    {
+                        txtPrecio.Text = "";
+                    }
 
-                if (itemTipo != null)
-                {
-                    ddlTipo.SelectedValue = itemTipo.Value;
-                }
-                else
-                {
-                    ddlTipo.SelectedIndex = 0; // Si no encuentra, seleccionar "-- Seleccione --"
+                    // Seleccionar el tipo por nombre
+                    string nombreTipo = dataRow["Nombre"].ToString().Trim();
+                    string tipoNormalizado = nombreTipo.ToLowerInvariant();
+                    ListItem itemTipo = null;
+
+                    foreach (ListItem item in ddlTipo.Items)
+                    {
+                        if (item.Text.Trim().ToLowerInvariant() == tipoNormalizado)
+                        {
+                            itemTipo = item;
+                            break;
+                        }
+                    }
+
+                    if (itemTipo != null)
+                    {
+                        ddlTipo.SelectedValue = itemTipo.Value;
+                    }
+                    else
+                    {
+                        ddlTipo.SelectedIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
