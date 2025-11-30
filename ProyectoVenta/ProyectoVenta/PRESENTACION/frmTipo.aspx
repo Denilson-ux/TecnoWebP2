@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmTipo.aspx.cs" Inherits="ProyectoVenta.PRESENTACION.frmTipo" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmTipo.aspx.cs" Inherits="ProyectoVenta.PRESENTACION.frmTipo" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success me-2" OnClick="btnGuardar_Click"/>
-                            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-secondary" OnClick="btnNuevo_Click"/>
+                            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-secondary me-2" OnClick="btnNuevo_Click"/>
                             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"/>
                         </div>
                     </div>
@@ -48,7 +48,9 @@
                 </div>
                 <div class="card-body">
                     <asp:GridView ID="gvTipo" runat="server" CssClass="table table-striped table-hover"
-                        AutoGenerateColumns="False" OnSelectedIndexChanged="gvTipo_SelectedIndexChanged">
+                        AutoGenerateColumns="False" 
+                        DataKeyNames="id_tipo"
+                        OnSelectedIndexChanged="gvTipo_SelectedIndexChanged">
                         <Columns>
                             <asp:BoundField DataField="id_tipo" HeaderText="ID" Visible="false" />
                             <asp:BoundField DataField="nombre" HeaderText="Tipo/Tamaño" />
