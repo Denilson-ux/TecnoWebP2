@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -96,22 +96,22 @@ namespace ProyectoVenta.NEGOCIO
 
         public bool modificar()
         {
-            iniciarSP("modificarCliente");
-            parametroInt(id_cliente, "id_c");
-            parametroVarchar(nombre, "nom", 100);
-            parametroVarchar(apellidos, "ape", 100);
-            parametroVarchar(telefono, "tel", 20);
-            parametroVarchar(email, "mail", 100);
-            parametroVarchar(direccion, "dir", 500);
-            parametroVarchar(referencia, "ref", 500);
-            parametroVarchar(zona, "zon", 100);
+            iniciarSP("actualizarCliente");
+            parametroInt(id_cliente, "p_id_cliente");
+            parametroVarchar(nombre, "p_nombre", 100);
+            parametroVarchar(apellidos, "p_apellido", 100);
+            parametroVarchar(telefono, "p_telefono", 20);
+            parametroVarchar(email, "p_email", 100);
+            parametroVarchar(direccion, "p_direccion", 255);
+            parametroVarchar(referencia, "p_referencia", 255);
+            parametroVarchar(zona, "p_zona", 50);
             return ejecutarSP();
         }
 
         public bool eliminar()
         {
             iniciarSP("eliminarCliente");
-            parametroInt(id_cliente, "id_cli");
+            parametroInt(id_cliente, "p_id_cliente");
             return ejecutarSP();
         }
 
