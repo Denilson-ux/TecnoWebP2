@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,7 +9,13 @@ namespace ProyectoVenta.PRESENTACION
     public partial class frmCliente : System.Web.UI.Page
     {
         Cliente objCliente = new Cliente();
-        int id_cliente = 0;
+        
+        // Usar ViewState para persistir el ID entre postbacks
+        public int IdCliente
+        {
+            get { return ViewState["id_cliente"] != null ? (int)ViewState["id_cliente"] : 0; }
+            set { ViewState["id_cliente"] = value; }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +30,7 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 objCliente.Nombre = "";
-                DataTable dt = objCliente.buscar();   // usa buscar() sin parámetros
+                DataTable dt = objCliente.buscar();
                 gvClientes.DataSource = dt;
                 gvClientes.DataBind();
             }
@@ -70,7 +76,7 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                if (id_cliente == 0)
+                if (IdCliente == 0)
                 {
                     mostrarMensaje("Debe seleccionar un cliente", "warning");
                     return;
@@ -78,7 +84,7 @@ namespace ProyectoVenta.PRESENTACION
 
                 if (validarCampos())
                 {
-                    objCliente.Idcliente = id_cliente;
+                    objCliente.Idcliente = IdCliente;
                     objCliente.Nombre = txtNombre.Text.Trim();
                     objCliente.Apellidos = txtApellidos.Text.Trim();
                     objCliente.Telefono = txtTelefono.Text.Trim();
@@ -109,13 +115,13 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                if (id_cliente == 0)
+                if (IdCliente == 0)
                 {
                     mostrarMensaje("Debe seleccionar un cliente", "warning");
                     return;
                 }
 
-                objCliente.Idcliente = id_cliente;
+                objCliente.Idcliente = IdCliente;
                 if (objCliente.eliminar())
                 {
                     mostrarMensaje("Cliente eliminado correctamente", "success");
@@ -138,7 +144,7 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 objCliente.Nombre = txtBuscar.Text.Trim();
-                DataTable dt = objCliente.buscar();   // usa buscar() que lee objCliente.Nombre
+                DataTable dt = objCliente.buscar();
                 gvClientes.DataSource = dt;
                 gvClientes.DataBind();
             }
@@ -151,6 +157,7 @@ namespace ProyectoVenta.PRESENTACION
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             limpiarCampos();
+            listarClientes();
         }
 
         protected void gvClientes_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,15 +165,40 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 GridViewRow row = gvClientes.SelectedRow;
+                IdCliente = Convert.ToInt32(gvClientes.DataKeys[gvClientes.SelectedIndex].Value);
 
-                // ID real desde DataKeys (configura DataKeyNames="id_cliente" en el GridView)
-                id_cliente = Convert.ToInt32(gvClientes.DataKeys[gvClientes.SelectedIndex].Value);
+                // Obtener datos directamente del DataTable para evitar problemas con HTML
+                DataTable dt = objCliente.buscar();
+                DataRow[] rows = dt.Select("id_cliente = " + IdCliente);
 
-                txtNombre.Text = row.Cells[1].Text;
-                txtApellidos.Text = row.Cells[2].Text;
-                txtTelefono.Text = row.Cells[3].Text;
-                txtEmail.Text = row.Cells[4].Text;
-                ddlZona.SelectedValue = row.Cells[5].Text;
+                if (rows.Length > 0)
+                {
+                    DataRow dataRow = rows[0];
+                    txtNombre.Text = dataRow["nombre"].ToString();
+                    txtApellidos.Text = dataRow["apellido"].ToString();
+                    txtTelefono.Text = dataRow["telefono"].ToString();
+                    txtEmail.Text = dataRow["email"] != DBNull.Value ? dataRow["email"].ToString() : "";
+                    txtDireccion.Text = dataRow["direccion"] != DBNull.Value ? dataRow["direccion"].ToString() : "";
+                    txtReferencia.Text = dataRow["referencia"] != DBNull.Value ? dataRow["referencia"].ToString() : "";
+                    
+                    string zona = dataRow["zona"] != DBNull.Value ? dataRow["zona"].ToString() : "";
+                    if (!string.IsNullOrWhiteSpace(zona))
+                    {
+                        ListItem item = ddlZona.Items.FindByValue(zona);
+                        if (item != null)
+                        {
+                            ddlZona.SelectedValue = zona;
+                        }
+                        else
+                        {
+                            ddlZona.SelectedIndex = 0;
+                        }
+                    }
+                    else
+                    {
+                        ddlZona.SelectedIndex = 0;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -196,7 +228,7 @@ namespace ProyectoVenta.PRESENTACION
 
         private void limpiarCampos()
         {
-            id_cliente = 0;
+            IdCliente = 0;
             txtNombre.Text = "";
             txtApellidos.Text = "";
             txtTelefono.Text = "";
