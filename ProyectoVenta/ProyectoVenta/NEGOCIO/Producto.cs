@@ -52,35 +52,36 @@ namespace ProyectoVenta.NEGOCIO
             set { this.id_tipo = value; }
         }
 
-        // Métodos CRUD ajustados a los nombres y orden de tu base actual
+        // SP FINALES!
         public bool Guardar()
         {
-            iniciarSP("guardarProducto");
-            parametroVarchar(descripcion, "descr", 30);
-            parametroDecimal(precio_base, "prec");
-            parametroInt(stock, "stoc");
-            parametroInt(id_tipo, "id_cat");
+            iniciarSP("insertarProducto");
+            parametroVarchar(descripcion, "p_nombre", 100);
+            parametroInt(id_tipo, "p_id_tipo");
+            parametroVarchar("-", "p_descripcion", 255);  // Si tienes campo descripción real usar aquí
+            parametroDecimal(precio_base, "p_precio");
+            parametroInt(stock, "p_stock");
+            parametroVarchar("", "p_imagen", 255);
             return ejecutarSP();
         }
-
         public bool Modificar()
         {
-            iniciarSP("modificarProducto");
-            parametroInt(id_producto, "id_prod");
-            parametroVarchar(descripcion, "descr", 30);
-            parametroDecimal(precio_base, "prec");
-            parametroInt(stock, "stoc");
-            parametroInt(id_tipo, "id_cat");
+            iniciarSP("actualizarProducto");
+            parametroInt(id_producto, "p_id_producto");
+            parametroVarchar(descripcion, "p_nombre", 100);
+            parametroVarchar("-", "p_descripcion", 255);
+            parametroInt(id_tipo, "p_id_tipo");
+            parametroDecimal(precio_base, "p_precio");
+            parametroInt(stock, "p_stock");
+            parametroVarchar("", "p_imagen", 255);
             return ejecutarSP();
         }
-
         public bool Eliminar()
         {
             iniciarSP("eliminarProducto");
-            parametroInt(id_producto, "id_prod");
+            parametroInt(id_producto, "p_id_producto");
             return ejecutarSP();
         }
-
         public DataTable Buscar(string texto)
         {
             iniciarSP("buscarProducto");
