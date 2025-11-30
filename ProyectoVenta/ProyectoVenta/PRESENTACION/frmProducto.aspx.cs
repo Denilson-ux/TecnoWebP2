@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ProyectoVenta.NEGOCIO;
@@ -191,20 +192,20 @@ namespace ProyectoVenta.PRESENTACION
                 // ID desde DataKeys
                 id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
-                // Leer directamente desde las celdas del GridView
-                string codigo = row.Cells[0].Text;        // Código
-                string nombreProducto = row.Cells[1].Text; // Producto
-                string nombreTipo = row.Cells[2].Text;     // Tipo (Pequeño, Mediano, Grande)
-                string precio = row.Cells[3].Text;         // Precio Base
-                string stock = row.Cells[4].Text;          // Stock
+                // Leer directamente desde las celdas del GridView y DECODIFICAR entidades HTML
+                string codigo = HttpUtility.HtmlDecode(row.Cells[0].Text.Trim());
+                string nombreProducto = HttpUtility.HtmlDecode(row.Cells[1].Text.Trim());
+                string nombreTipo = HttpUtility.HtmlDecode(row.Cells[2].Text.Trim());
+                string precio = HttpUtility.HtmlDecode(row.Cells[3].Text.Trim());
+                string stock = HttpUtility.HtmlDecode(row.Cells[4].Text.Trim());
 
                 // Asignar valores a los campos
                 txtCodigo.Text = codigo;
                 txtNombre.Text = nombreProducto;
                 txtStock.Text = stock;
 
-                // Limpiar y parsear el precio correctamente (eliminar símbolos de moneda, comas, etc.)
-                precio = precio.Replace(",", ".").Replace("Bs.", "").Replace("Bs", "").Trim();
+                // Limpiar y parsear el precio correctamente
+                precio = precio.Replace(",", ".").Replace("Bs.", "").Replace("Bs", "").Replace("&nbsp;", "").Trim();
                 decimal precioDecimal;
                 if (decimal.TryParse(precio, System.Globalization.NumberStyles.Any, 
                     System.Globalization.CultureInfo.InvariantCulture, out precioDecimal))
@@ -217,7 +218,7 @@ namespace ProyectoVenta.PRESENTACION
                 }
 
                 // Normalizar comparación del tipo (ignorar mayúsculas/minúsculas y espacios)
-                string tipoNormalizado = nombreTipo.Trim().ToLowerInvariant();
+                string tipoNormalizado = nombreTipo.ToLowerInvariant();
                 ListItem itemTipo = null;
                 
                 foreach (ListItem item in ddlTipo.Items)
