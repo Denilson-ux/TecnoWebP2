@@ -8,17 +8,23 @@ namespace ProyectoVenta.NEGOCIO
     {
         private int id_producto;
         private string nombre;
+        private string descripcion;
         private decimal precio;
         private int stock;
         private int id_tipo;
+        private string codigo_producto;
+        private string imagen;
 
         public Producto()
         {
             id_producto = 0;
             nombre = "";
+            descripcion = "";
             precio = 0;
             stock = 0;
             id_tipo = 0;
+            codigo_producto = "";
+            imagen = "";
         }
 
         // Propiedades
@@ -28,10 +34,22 @@ namespace ProyectoVenta.NEGOCIO
             set { this.id_producto = value; }
         }
 
-        public string Descripcion
+        public string CodigoProducto
+        {
+            get { return this.codigo_producto; }
+            set { this.codigo_producto = value; }
+        }
+
+        public string Nombre
         {
             get { return this.nombre; }
             set { this.nombre = value; }
+        }
+
+        public string Descripcion
+        {
+            get { return this.descripcion; }
+            set { this.descripcion = value; }
         }
 
         public decimal PrecioBase
@@ -52,16 +70,22 @@ namespace ProyectoVenta.NEGOCIO
             set { this.id_tipo = value; }
         }
 
+        public string Imagen
+        {
+            get { return this.imagen; }
+            set { this.imagen = value; }
+        }
+
         // Métodos CRUD usando los SP y parámetros reales de tu base de datos
         public bool Guardar()
         {
             iniciarSP("insertarProducto");
             parametroVarchar(nombre, "p_nombre", 100);
-            parametroVarchar("", "p_descripcion", 255);
+            parametroVarchar(descripcion ?? "", "p_descripcion", 255);
             parametroInt(id_tipo, "p_id_tipo");
             parametroDecimal(precio, "p_precio");
             parametroInt(stock, "p_stock");
-            parametroVarchar("", "p_imagen", 255);
+            parametroVarchar(imagen ?? "", "p_imagen", 255);
             return ejecutarSP();
         }
 
@@ -70,11 +94,11 @@ namespace ProyectoVenta.NEGOCIO
             iniciarSP("actualizarProducto");
             parametroInt(id_producto, "p_id_producto");
             parametroVarchar(nombre, "p_nombre", 100);
-            parametroVarchar("", "p_descripcion", 255);
+            parametroVarchar(descripcion ?? "", "p_descripcion", 255);
             parametroInt(id_tipo, "p_id_tipo");
             parametroDecimal(precio, "p_precio");
             parametroInt(stock, "p_stock");
-            parametroVarchar("", "p_imagen", 255);
+            parametroVarchar(imagen ?? "", "p_imagen", 255);
             return ejecutarSP();
         }
 
