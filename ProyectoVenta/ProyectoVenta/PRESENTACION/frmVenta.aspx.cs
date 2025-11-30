@@ -16,7 +16,6 @@ namespace ProyectoVenta.PRESENTACION
         Tipo objTipo = new Tipo();
         DetalleVenta objDetalle = new DetalleVenta();
 
-        // Lista temporal para los detalles
         List<ItemDetalle> listaDetalles = new List<ItemDetalle>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -45,28 +44,19 @@ namespace ProyectoVenta.PRESENTACION
         private void cargarProductos()
         {
             Producto objProducto = new Producto();
-
-            // Trae todos los productos (pizzas) con su nombre y precio
-            DataTable dt = objProducto.Buscar("");   // ya devuelve nombre_producto, precio_base, etc.
-
+            DataTable dt = objProducto.Buscar("");
             ddlProducto.DataSource = dt;
-            ddlProducto.DataTextField = "nombre_producto";   // lo que verá el usuario
-            ddlProducto.DataValueField = "id_producto";      // clave interna
+            ddlProducto.DataTextField = "nombre_producto";
+            ddlProducto.DataValueField = "id_producto";
             ddlProducto.DataBind();
-
             ddlProducto.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
         }
-
-
-
-
 
         private void cargarTipo()
         {
             try
             {
                 DataTable dt = objTipo.Buscar("");
-
                 ddlTipo.DataSource = dt;
                 ddlTipo.DataTextField = "nombre";
                 ddlTipo.DataValueField = "id_tipo";
@@ -85,16 +75,12 @@ namespace ProyectoVenta.PRESENTACION
             {
                 try
                 {
-                    DataTable dt = objProducto.Buscar(""); // trae todos los productos
+                    DataTable dt = objProducto.Buscar("");
                     DataRow[] rows = dt.Select("id_producto = " + ddlProducto.SelectedValue);
-
                     if (rows.Length > 0)
                     {
-                        // Lee directamente el precio del producto usando precio_base
                         decimal precio = Convert.ToDecimal(rows[0]["precio_base"]);
                         txtPrecioUnit.Text = precio.ToString("0.00");
-
-                        // Si aún no usas tamaños/tipos para pizzas, ocultas el panel
                         divTipo.Visible = false;
                     }
                 }
@@ -110,7 +96,6 @@ namespace ProyectoVenta.PRESENTACION
             }
         }
 
-
         protected void ddlTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlProducto.SelectedValue != "0" && ddlTipo.SelectedValue != "0")
@@ -119,18 +104,14 @@ namespace ProyectoVenta.PRESENTACION
                 {
                     DataTable dtProducto = objProducto.Buscar("");
                     DataRow[] rowsProducto = dtProducto.Select("id_producto = " + ddlProducto.SelectedValue);
-
                     DataTable dtTipos = objTipo.Buscar("");
                     DataRow[] rowsTipo = dtTipos.Select("id_tipo = " + ddlTipo.SelectedValue);
-
                     if (rowsProducto.Length > 0 && rowsTipo.Length > 0)
                     {
                         decimal precioBase = Convert.ToDecimal(rowsProducto[0]["precio_base"]);
                         decimal multiplicador = 1;
-
                         if (rowsTipo[0].Table.Columns.Contains("multiplicador_precio"))
                             multiplicador = Convert.ToDecimal(rowsTipo[0]["multiplicador_precio"]);
-
                         decimal precioFinal = precioBase * multiplicador;
                         txtPrecioUnit.Text = precioFinal.ToString("0.00");
                     }
@@ -169,10 +150,8 @@ namespace ProyectoVenta.PRESENTACION
                     }
 
                     item.Subtotal = item.PrecioUnitario * item.Cantidad;
-
                     listaDetalles.Add(item);
                     ViewState["Detalles"] = listaDetalles;
-
                     actualizarGridDetalle();
                     limpiarDetalle();
                     calcularTotales(sender, e);
@@ -199,30 +178,26 @@ namespace ProyectoVenta.PRESENTACION
             }
         }
 
-        // ========== CLIENTES ==========
-
         private void cargarClientes(string filtro)
-        {
-            DataTable dt = objCliente.Buscar(filtro);
-            gvClientes.DataSource = dt;
-            gvClientes.DataBind();
-        }
-
-
-
-        protected void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             try
             {
-                txtBuscarCliente.Text = "";
-                cargarClientes("");   // carga todos los clientes
-                ScriptManager.RegisterStartupScript(
-                    this,
-                    GetType(),
-                    "MostrarClientes",
-                    "mostrarModalClientes();",
-                    true
-                );
+                DataTable dt = objCliente.Buscar(filtro);
+                
+                // Agregar columna nombre_completo concatenando nombre y apellido
+                if (!dt.Columns.Contains("nombre_completo"))
+                {
+                    dt.Columns.Add("nombre_completo", typeof(string));
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string nombre = row["nombre"].ToString();
+                        string apellido = row["apellido"].ToString();
+                        row["nombre_completo"] = nombre + " " + apellido;
+                    }
+                }
+                
+                gvClientes.DataSource = dt;
+                gvClientes.DataBind();
             }
             catch (Exception ex)
             {
@@ -230,6 +205,19 @@ namespace ProyectoVenta.PRESENTACION
             }
         }
 
+        protected void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBuscarCliente.Text = "";
+                cargarClientes("");
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarClientes", "mostrarModalClientes();", true);
+            }
+            catch (Exception ex)
+            {
+                mostrarMensaje("Error al cargar clientes: " + ex.Message, "danger");
+            }
+        }
 
         protected void btnFiltrarCliente_Click(object sender, EventArgs e)
         {
@@ -246,32 +234,22 @@ namespace ProyectoVenta.PRESENTACION
         }
 
         protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-            if (e.CommandName == "SeleccionarCliente")
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gvClientes.Rows[index];
-
-            string idCliente = row.Cells[0].Text;
-            string nombreCodificado = row.Cells[1].Text;
-
-            // Decodificar entidades HTML (&#237; -> í, etc.)
-            string nombre = HttpUtility.HtmlDecode(nombreCodificado);
-
-            hfIdCliente.Value = idCliente;
-            txtCliente.Text = nombre;
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "CerrarClientes", "cerrarModalClientes();", true);
+            if (e.CommandName == "SeleccionarCliente")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvClientes.Rows[index];
+                string idCliente = row.Cells[0].Text;
+                string nombreCodificado = row.Cells[1].Text;
+                string nombre = HttpUtility.HtmlDecode(nombreCodificado);
+                hfIdCliente.Value = idCliente;
+                txtCliente.Text = nombre;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CerrarClientes", "cerrarModalClientes();", true);
             }
         }
 
-
-    // ===========================
-
-    protected void btnGuardar_Click(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
-            // Validar que PayPal haya aprobado el pago
             if (hfPagoAprobado.Value != "1")
             {
                 mostrarMensaje("Debe completar el pago con PayPal antes de guardar el pedido.", "danger");
@@ -294,7 +272,6 @@ namespace ProyectoVenta.PRESENTACION
                     if (objVenta.guardar())
                     {
                         int idVenta = objVenta.obtenerUltimoId();
-
                         bool detallesOk = true;
                         foreach (var item in listaDetalles)
                         {
@@ -345,23 +322,13 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 decimal subtotal = 0;
-
-                // Sumar subtotales de la lista de detalles
                 foreach (var item in listaDetalles)
                     subtotal += item.Subtotal;
-
-                // Mostrar subtotal
                 lblSubtotal.Text = "Bs. " + subtotal.ToString("0.00");
-
-                // TOTAL igual al SUBTOTAL (sin descuento)
                 lblTotal.Text = lblSubtotal.Text;
             }
-            catch
-            {
-                // Opcional: podrías registrar el error en un log
-            }
+            catch { }
         }
-
 
         private void actualizarGridDetalle()
         {
@@ -376,25 +343,21 @@ namespace ProyectoVenta.PRESENTACION
                 mostrarMensaje("Debe seleccionar un producto", "warning");
                 return false;
             }
-
             if (divTipo.Visible && ddlTipo.SelectedValue == "0")
             {
                 mostrarMensaje("Debe seleccionar un tipo", "warning");
                 return false;
             }
-
             if (string.IsNullOrEmpty(txtCantidad.Text) || int.Parse(txtCantidad.Text) <= 0)
             {
                 mostrarMensaje("Debe ingresar una cantidad válida", "warning");
                 return false;
             }
-
             if (string.IsNullOrEmpty(txtPrecioUnit.Text) || decimal.Parse(txtPrecioUnit.Text) <= 0)
             {
                 mostrarMensaje("El precio no es válido", "warning");
                 return false;
             }
-
             return true;
         }
 
@@ -405,13 +368,11 @@ namespace ProyectoVenta.PRESENTACION
                 mostrarMensaje("Debe seleccionar un cliente", "warning");
                 return false;
             }
-
             if (listaDetalles.Count == 0)
             {
                 mostrarMensaje("Debe agregar al menos un producto", "warning");
                 return false;
             }
-
             return true;
         }
 
@@ -433,16 +394,11 @@ namespace ProyectoVenta.PRESENTACION
             hfIdCliente.Value = "0";
             txtDireccionEntrega.Text = "";
             txtObservaciones.Text = "";
-
             listaDetalles.Clear();
             ViewState["Detalles"] = listaDetalles;
             actualizarGridDetalle();
-
             lblSubtotal.Text = "Bs. 0.00";
             lblTotal.Text = "Bs. 0.00";
-
-
-
             limpiarDetalle();
             lblMensaje.Visible = false;
         }
