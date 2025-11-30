@@ -48,7 +48,6 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                objProducto.Descripcion = "";
                 DataTable dt = objProducto.Buscar("");
                 gvProductos.DataSource = dt;
                 gvProductos.DataBind();
@@ -73,7 +72,8 @@ namespace ProyectoVenta.PRESENTACION
                     }
 
                     objProducto.CodigoProducto = txtCodigo.Text.Trim();
-                    objProducto.Descripcion = txtNombre.Text.Trim();
+                    objProducto.Nombre = txtNombre.Text.Trim();
+                    objProducto.Descripcion = txtDescripcion.Text.Trim();
                     objProducto.PrecioBase = precio;
                     objProducto.Stock = int.Parse(txtStock.Text);
                     objProducto.IdTipo = int.Parse(ddlTipo.SelectedValue);
@@ -117,7 +117,8 @@ namespace ProyectoVenta.PRESENTACION
 
                     objProducto.Idproducto = IdProducto;
                     objProducto.CodigoProducto = txtCodigo.Text.Trim();
-                    objProducto.Descripcion = txtNombre.Text.Trim();
+                    objProducto.Nombre = txtNombre.Text.Trim();
+                    objProducto.Descripcion = txtDescripcion.Text.Trim();
                     objProducto.PrecioBase = precio;
                     objProducto.Stock = int.Parse(txtStock.Text);
                     objProducto.IdTipo = int.Parse(ddlTipo.SelectedValue);
@@ -172,7 +173,6 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                objProducto.Descripcion = txtBuscar.Text.Trim();
                 DataTable dt = objProducto.Buscar(txtBuscar.Text.Trim());
                 gvProductos.DataSource = dt;
                 gvProductos.DataBind();
