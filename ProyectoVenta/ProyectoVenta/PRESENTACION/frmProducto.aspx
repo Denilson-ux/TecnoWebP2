@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmProducto.aspx.cs" Inherits="ProyectoVenta.PRESENTACION.frmProducto" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmProducto.aspx.cs" Inherits="ProyectoVenta.PRESENTACION.frmProducto" %>
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-3">
                             <label>Precio Base (Bs.):</label>
-                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>
                         </div>
                     </div>
                     
