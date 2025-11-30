@@ -197,13 +197,13 @@ namespace ProyectoVenta.PRESENTACION
                 {
                     DataRow dataRow = rows[0];
                     txtCodigo.Text = dataRow["codigo_producto"].ToString();
-                    txtNombre.Text = dataRow["nombre_producto"] != null ? dataRow["nombre_producto"].ToString() : dataRow["descripcion"].ToString();
+                    txtNombre.Text = dataRow.Table.Columns.Contains("nombre_producto") ? dataRow["nombre_producto"].ToString() : dataRow["descripcion"].ToString();
                     txtStock.Text = dataRow["stock"].ToString();
 
-                    // CORREGIDO: usar el campo correcto 'precio' no 'precio_base'
-                    if (dataRow.Table.Columns.Contains("precio") && dataRow["precio"] != DBNull.Value)
+                    // Leer de precio_base (el alias correcto de tu SP actualizado)
+                    if (dataRow.Table.Columns.Contains("precio_base") && dataRow["precio_base"] != DBNull.Value)
                     {
-                        decimal precio = Convert.ToDecimal(dataRow["precio"]);
+                        decimal precio = Convert.ToDecimal(dataRow["precio_base"]);
                         txtPrecio.Text = precio.ToString("0.00");
                     }
                     else
