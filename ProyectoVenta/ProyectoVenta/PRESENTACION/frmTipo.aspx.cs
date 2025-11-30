@@ -46,6 +46,7 @@ namespace ProyectoVenta.PRESENTACION
                     mostrarMensaje("Debe ingresar el nombre del tipo", "warning");
                     return;
                 }
+
                 objTipo.Nombre = txtTipo.Text.Trim();
                 if (objTipo.Guardar())
                 {
@@ -102,20 +103,21 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                if (gvTipo.SelectedIndex < 0 || gvTipo.DataKeys.Count == 0) {
-                    mostrarMensaje("No hay tipo seleccionado.", "warning");
-                    return;
-                }
-                IdTipo = Convert.ToInt32(gvTipo.DataKeys[gvTipo.SelectedIndex].Value);
+                // Verificar que hay una selección válida
+                if (gvTipo.SelectedIndex >= 0 && gvTipo.DataKeys.Count > gvTipo.SelectedIndex)
+                {
+                    IdTipo = Convert.ToInt32(gvTipo.DataKeys[gvTipo.SelectedIndex].Value);
 
-                DataTable dt = objTipo.Buscar("");
-                DataRow[] rows = dt.Select("id_tipo = " + IdTipo);
-                if (rows.Length > 0) {
-                    DataRow dataRow = rows[0];
-                    string nombre = dataRow["nombre"].ToString();
-                    txtTipo.Text = HttpUtility.HtmlDecode(nombre);
-                } else {
-                    mostrarMensaje("No se encontró el tipo seleccionado.", "warning");
+                    // Obtener datos del DataTable para evitar problemas con HTML entities
+                    DataTable dt = objTipo.Buscar("");
+                    DataRow[] rows = dt.Select("id_tipo = " + IdTipo);
+
+                    if (rows.Length > 0)
+                    {
+                        DataRow dataRow = rows[0];
+                        string nombre = dataRow["nombre"].ToString();
+                        txtTipo.Text = HttpUtility.HtmlDecode(nombre);
+                    }
                 }
             }
             catch (Exception ex)
