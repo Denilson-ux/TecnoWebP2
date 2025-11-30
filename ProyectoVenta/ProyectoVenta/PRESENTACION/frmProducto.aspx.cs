@@ -203,8 +203,8 @@ namespace ProyectoVenta.PRESENTACION
                 txtNombre.Text = nombreProducto;
                 txtStock.Text = stock;
 
-                // Limpiar el precio de formato (eliminar comas, puntos de miles, etc.)
-                precio = precio.Replace(",", "."); // Convertir coma decimal a punto
+                // Limpiar y parsear el precio correctamente (eliminar símbolos de moneda, comas, etc.)
+                precio = precio.Replace(",", ".").Replace("Bs.", "").Replace("Bs", "").Trim();
                 decimal precioDecimal;
                 if (decimal.TryParse(precio, System.Globalization.NumberStyles.Any, 
                     System.Globalization.CultureInfo.InvariantCulture, out precioDecimal))
@@ -216,8 +216,19 @@ namespace ProyectoVenta.PRESENTACION
                     txtPrecio.Text = "0.00";
                 }
 
-                // Seleccionar el tipo por nombre en el DropDownList
-                ListItem itemTipo = ddlTipo.Items.FindByText(nombreTipo);
+                // Normalizar comparación del tipo (ignorar mayúsculas/minúsculas y espacios)
+                string tipoNormalizado = nombreTipo.Trim().ToLowerInvariant();
+                ListItem itemTipo = null;
+                
+                foreach (ListItem item in ddlTipo.Items)
+                {
+                    if (item.Text.Trim().ToLowerInvariant() == tipoNormalizado)
+                    {
+                        itemTipo = item;
+                        break;
+                    }
+                }
+
                 if (itemTipo != null)
                 {
                     ddlTipo.SelectedValue = itemTipo.Value;
