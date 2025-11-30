@@ -7,16 +7,16 @@ namespace ProyectoVenta.NEGOCIO
     public class Producto : Conexion
     {
         private int id_producto;
-        private string descripcion;
-        private decimal precio_base;
+        private string nombre;
+        private decimal precio;
         private int stock;
         private int id_tipo;
 
         public Producto()
         {
             id_producto = 0;
-            descripcion = "";
-            precio_base = 0;
+            nombre = "";
+            precio = 0;
             stock = 0;
             id_tipo = 0;
         }
@@ -30,14 +30,14 @@ namespace ProyectoVenta.NEGOCIO
 
         public string Descripcion
         {
-            get { return this.descripcion; }
-            set { this.descripcion = value; }
+            get { return this.nombre; }
+            set { this.nombre = value; }
         }
 
         public decimal PrecioBase
         {
-            get { return this.precio_base; }
-            set { this.precio_base = value; }
+            get { return this.precio; }
+            set { this.precio = value; }
         }
 
         public int Stock
@@ -52,36 +52,39 @@ namespace ProyectoVenta.NEGOCIO
             set { this.id_tipo = value; }
         }
 
-        // SP FINALES!
+        // Métodos CRUD usando los SP y parámetros reales de tu base de datos
         public bool Guardar()
         {
             iniciarSP("insertarProducto");
-            parametroVarchar(descripcion, "p_nombre", 100);
+            parametroVarchar(nombre, "p_nombre", 100);
+            parametroVarchar("", "p_descripcion", 255);
             parametroInt(id_tipo, "p_id_tipo");
-            parametroVarchar("-", "p_descripcion", 255);  // Si tienes campo descripción real usar aquí
-            parametroDecimal(precio_base, "p_precio");
+            parametroDecimal(precio, "p_precio");
             parametroInt(stock, "p_stock");
             parametroVarchar("", "p_imagen", 255);
             return ejecutarSP();
         }
+
         public bool Modificar()
         {
             iniciarSP("actualizarProducto");
             parametroInt(id_producto, "p_id_producto");
-            parametroVarchar(descripcion, "p_nombre", 100);
-            parametroVarchar("-", "p_descripcion", 255);
+            parametroVarchar(nombre, "p_nombre", 100);
+            parametroVarchar("", "p_descripcion", 255);
             parametroInt(id_tipo, "p_id_tipo");
-            parametroDecimal(precio_base, "p_precio");
+            parametroDecimal(precio, "p_precio");
             parametroInt(stock, "p_stock");
             parametroVarchar("", "p_imagen", 255);
             return ejecutarSP();
         }
+
         public bool Eliminar()
         {
             iniciarSP("eliminarProducto");
             parametroInt(id_producto, "p_id_producto");
             return ejecutarSP();
         }
+
         public DataTable Buscar(string texto)
         {
             iniciarSP("buscarProducto");
