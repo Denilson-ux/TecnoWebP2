@@ -11,7 +11,12 @@ namespace ProyectoVenta.PRESENTACION
     {
         Producto objProducto = new Producto();
         Tipo objTipo = new Tipo();
-        int id_producto = 0;
+        // El id_producto se maneja por ViewState para persistencia.
+        public int IdProducto
+        {
+            get { return ViewState["id_producto"] != null ? (int)ViewState["id_producto"] : 0; }
+            set { ViewState["id_producto"] = value; }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +31,7 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                DataTable dt = objTipo.Buscar(""); // Busca todos los tipos
+                DataTable dt = objTipo.Buscar("");
                 ddlTipo.DataSource = dt;
                 ddlTipo.DataTextField = "nombre";
                 ddlTipo.DataValueField = "id_tipo";
@@ -44,7 +49,7 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 objProducto.Descripcion = "";
-                DataTable dt = objProducto.Buscar(""); // Ajusta el método para permitir búsquedas si lo necesitas
+                DataTable dt = objProducto.Buscar("");
                 gvProductos.DataSource = dt;
                 gvProductos.DataBind();
             }
@@ -95,7 +100,7 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                if (id_producto == 0)
+                if (IdProducto == 0)
                 {
                     mostrarMensaje("Debe seleccionar un producto", "warning");
                     return;
@@ -110,7 +115,7 @@ namespace ProyectoVenta.PRESENTACION
                         return;
                     }
 
-                    objProducto.Idproducto = id_producto;
+                    objProducto.Idproducto = IdProducto;
                     objProducto.CodigoProducto = txtCodigo.Text.Trim();
                     objProducto.Descripcion = txtNombre.Text.Trim();
                     objProducto.PrecioBase = precio;
@@ -139,13 +144,13 @@ namespace ProyectoVenta.PRESENTACION
         {
             try
             {
-                if (id_producto == 0)
+                if (IdProducto == 0)
                 {
                     mostrarMensaje("Debe seleccionar un producto", "warning");
                     return;
                 }
 
-                objProducto.Idproducto = id_producto;
+                objProducto.Idproducto = IdProducto;
                 if (objProducto.Eliminar())
                 {
                     mostrarMensaje("Producto eliminado correctamente", "success");
@@ -188,10 +193,10 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 GridViewRow row = gvProductos.SelectedRow;
-                id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
+                IdProducto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
                 DataTable dt = objProducto.Buscar("");
-                DataRow[] rows = dt.Select("id_producto = " + id_producto);
+                DataRow[] rows = dt.Select("id_producto = " + IdProducto);
 
                 if (rows.Length > 0)
                 {
@@ -200,7 +205,6 @@ namespace ProyectoVenta.PRESENTACION
                     txtNombre.Text = dataRow.Table.Columns.Contains("nombre_producto") ? dataRow["nombre_producto"].ToString() : dataRow["descripcion"].ToString();
                     txtStock.Text = dataRow["stock"].ToString();
 
-                    // Leer de precio_base (el alias correcto de tu SP actualizado)
                     if (dataRow.Table.Columns.Contains("precio_base") && dataRow["precio_base"] != DBNull.Value)
                     {
                         decimal precio = Convert.ToDecimal(dataRow["precio_base"]);
@@ -211,7 +215,6 @@ namespace ProyectoVenta.PRESENTACION
                         txtPrecio.Text = "";
                     }
 
-                    // Seleccionar el tipo por nombre
                     string nombreTipo = dataRow.Table.Columns.Contains("Nombre") ? dataRow["Nombre"].ToString().Trim() : "";
                     string tipoNormalizado = nombreTipo.ToLowerInvariant();
                     ListItem itemTipo = null;
@@ -269,7 +272,7 @@ namespace ProyectoVenta.PRESENTACION
 
         private void limpiarCampos()
         {
-            id_producto = 0;
+            IdProducto = 0;
             txtCodigo.Text = "";
             txtNombre.Text = "";
             txtDescripcion.Text = "";
