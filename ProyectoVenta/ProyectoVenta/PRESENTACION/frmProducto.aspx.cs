@@ -188,27 +188,22 @@ namespace ProyectoVenta.PRESENTACION
             try
             {
                 GridViewRow row = gvProductos.SelectedRow;
-
-                // ID desde DataKeys
                 id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
-                // Obtener los datos directamente del DataTable original
                 DataTable dt = objProducto.Buscar("");
                 DataRow[] rows = dt.Select("id_producto = " + id_producto);
 
                 if (rows.Length > 0)
                 {
                     DataRow dataRow = rows[0];
-
-                    // Asignar valores directamente desde el DataTable
                     txtCodigo.Text = dataRow["codigo_producto"].ToString();
-                    txtNombre.Text = dataRow["nombre_producto"].ToString();
+                    txtNombre.Text = dataRow["nombre_producto"] != null ? dataRow["nombre_producto"].ToString() : dataRow["descripcion"].ToString();
                     txtStock.Text = dataRow["stock"].ToString();
 
-                    // Obtener precio directamente como decimal
-                    if (dataRow["precio_base"] != DBNull.Value)
+                    // CORREGIDO: usar el campo correcto 'precio' no 'precio_base'
+                    if (dataRow.Table.Columns.Contains("precio") && dataRow["precio"] != DBNull.Value)
                     {
-                        decimal precio = Convert.ToDecimal(dataRow["precio_base"]);
+                        decimal precio = Convert.ToDecimal(dataRow["precio"]);
                         txtPrecio.Text = precio.ToString("0.00");
                     }
                     else
@@ -217,10 +212,9 @@ namespace ProyectoVenta.PRESENTACION
                     }
 
                     // Seleccionar el tipo por nombre
-                    string nombreTipo = dataRow["Nombre"].ToString().Trim();
+                    string nombreTipo = dataRow.Table.Columns.Contains("Nombre") ? dataRow["Nombre"].ToString().Trim() : "";
                     string tipoNormalizado = nombreTipo.ToLowerInvariant();
                     ListItem itemTipo = null;
-
                     foreach (ListItem item in ddlTipo.Items)
                     {
                         if (item.Text.Trim().ToLowerInvariant() == tipoNormalizado)
@@ -229,7 +223,6 @@ namespace ProyectoVenta.PRESENTACION
                             break;
                         }
                     }
-
                     if (itemTipo != null)
                     {
                         ddlTipo.SelectedValue = itemTipo.Value;
