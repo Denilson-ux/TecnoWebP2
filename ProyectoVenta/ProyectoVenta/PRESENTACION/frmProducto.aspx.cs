@@ -193,28 +193,57 @@ namespace ProyectoVenta.PRESENTACION
                 id_producto = Convert.ToInt32(gvProductos.DataKeys[row.RowIndex].Value);
 
                 // Leer directamente desde las celdas del GridView y DECODIFICAR entidades HTML
-                string codigo = HttpUtility.HtmlDecode(row.Cells[0].Text.Trim());
-                string nombreProducto = HttpUtility.HtmlDecode(row.Cells[1].Text.Trim());
-                string nombreTipo = HttpUtility.HtmlDecode(row.Cells[2].Text.Trim());
-                string precio = HttpUtility.HtmlDecode(row.Cells[3].Text.Trim());
-                string stock = HttpUtility.HtmlDecode(row.Cells[4].Text.Trim());
+                string codigo = HttpUtility.HtmlDecode(row.Cells[0].Text).Trim();
+                string nombreProducto = HttpUtility.HtmlDecode(row.Cells[1].Text).Trim();
+                string nombreTipo = HttpUtility.HtmlDecode(row.Cells[2].Text).Trim();
+                string precioTexto = HttpUtility.HtmlDecode(row.Cells[3].Text).Trim();
+                string stock = HttpUtility.HtmlDecode(row.Cells[4].Text).Trim();
 
                 // Asignar valores a los campos
                 txtCodigo.Text = codigo;
                 txtNombre.Text = nombreProducto;
                 txtStock.Text = stock;
 
-                // Limpiar y parsear el precio correctamente
-                precio = precio.Replace(",", ".").Replace("Bs.", "").Replace("Bs", "").Replace("&nbsp;", "").Trim();
-                decimal precioDecimal;
-                if (decimal.TryParse(precio, System.Globalization.NumberStyles.Any, 
-                    System.Globalization.CultureInfo.InvariantCulture, out precioDecimal))
+                // Parseo robusto del precio - probar múltiples formatos
+                decimal precioDecimal = 0;
+                bool precioParseado = false;
+
+                // Limpiar caracteres comunes
+                string precioLimpio = precioTexto
+                    .Replace("Bs.", "")
+                    .Replace("Bs", "")
+                    .Replace("$", "")
+                    .Replace("&nbsp;", "")
+                    .Replace(" ", "")
+                    .Trim();
+
+                // Intentar parsear con coma como decimal (formato español: 25,00)
+                if (!precioParseado && precioLimpio.Contains(","))
+                {
+                    string precioConPunto = precioLimpio.Replace(".", "").Replace(",", ".");
+                    precioParseado = decimal.TryParse(precioConPunto,
+                        System.Globalization.NumberStyles.Any,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        out precioDecimal);
+                }
+
+                // Intentar parsear con punto como decimal (formato inglés: 25.00)
+                if (!precioParseado)
+                {
+                    precioParseado = decimal.TryParse(precioLimpio,
+                        System.Globalization.NumberStyles.Any,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        out precioDecimal);
+                }
+
+                // Asignar el precio parseado
+                if (precioParseado && precioDecimal > 0)
                 {
                     txtPrecio.Text = precioDecimal.ToString("0.00");
                 }
                 else
                 {
-                    txtPrecio.Text = "0.00";
+                    txtPrecio.Text = "";
                 }
 
                 // Normalizar comparación del tipo (ignorar mayúsculas/minúsculas y espacios)
