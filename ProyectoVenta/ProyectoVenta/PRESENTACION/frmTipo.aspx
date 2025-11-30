@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Gestión de Tipos (Tamaños) - Pizzería</title>
+    <title>Gestion de Tipos - Pizzeria</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="container mt-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">🍕 PIZZERÍA BAMBINO</a>
+                    <a class="navbar-brand" href="#">PIZZERIA BAMBINO</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link active" Text="Tipo"/>
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos"/>
@@ -21,7 +21,7 @@
                 </div>
             </nav>
 
-            <h2 class="text-center mb-4">🍕 GESTIÓN DE TIPOS (Tamaños de Pizza)</h2>
+            <h2 class="text-center mb-4">GESTION DE TIPOS</h2>
 
             <div class="card mb-4">
                 <div class="card-header bg-warning text-dark">
@@ -30,8 +30,8 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-8">
-                            <label>Tipo o tamaño de pizza:</label>
-                            <asp:TextBox ID="txtTipo" runat="server" CssClass="form-control" placeholder="Ej: Pequeño, Mediano, Grande"></asp:TextBox>
+                            <label>Tipo de pizza:</label>
+                            <asp:TextBox ID="txtTipo" runat="server" CssClass="form-control" placeholder="Ej: Mediano, Grande"></asp:TextBox>
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success me-2" OnClick="btnGuardar_Click"/>
@@ -53,7 +53,7 @@
                         OnSelectedIndexChanged="gvTipo_SelectedIndexChanged">
                         <Columns>
                             <asp:BoundField DataField="id_tipo" HeaderText="ID" Visible="false" />
-                            <asp:BoundField DataField="nombre" HeaderText="Tipo/Tamaño" />
+                            <asp:BoundField DataField="nombre" HeaderText="Tipo" />
                             <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" ButtonType="Button"/>
                         </Columns>
                     </asp:GridView>

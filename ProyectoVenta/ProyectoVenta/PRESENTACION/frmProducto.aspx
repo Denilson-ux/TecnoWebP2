@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Gestión de Productos - Pizzería</title>
+    <title>Gestion de Productos - Pizzeria</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="container mt-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">🍕 PIZZERÍA BAMBINO</a>
+                    <a class="navbar-brand" href="#">PIZZERIA BAMBINO</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link" Text="Tipo"/>
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link active" Text="Productos"/>
@@ -21,7 +21,7 @@
                 </div>
             </nav>
             
-            <h2 class="text-center mb-4">GESTIÓN DE PRODUCTOS</h2>
+            <h2 class="text-center mb-4">GESTION DE PRODUCTOS</h2>
             
             <div class="card mb-4">
                 <div class="card-header bg-warning">
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-3">
-                            <label>Código:</label>
+                            <label>Codigo:</label>
                             <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" placeholder="PIZ001"></asp:TextBox>
                         </div>
                         <div class="col-md-6">
@@ -56,7 +56,7 @@
                     
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>Descripción:</label>
+                            <label>Descripcion:</label>
                             <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2" placeholder="Ingredientes..."></asp:TextBox>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
     DataKeyNames="id_producto"
     OnSelectedIndexChanged="gvProductos_SelectedIndexChanged">
     <Columns>
-        <asp:BoundField DataField="codigo_producto" HeaderText="Código" />
+        <asp:BoundField DataField="codigo_producto" HeaderText="Codigo" />
         <asp:BoundField DataField="nombre_producto" HeaderText="Producto" />
         <asp:BoundField DataField="Nombre" HeaderText="Tipo" />
         <asp:BoundField DataField="precio_base" HeaderText="Precio Base"

@@ -18,7 +18,6 @@
                     <a class="navbar-brand" href="#">🍕 PIZZERÍA BAMBINO - PEDIDO</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link" Text="Tipo" />
-                        <asp:HyperLink runat="server" NavigateUrl="~/frmCategoria.aspx" CssClass="nav-link" Text="Categorías" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmCliente.aspx" CssClass="nav-link" Text="Clientes" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmVenta.aspx" CssClass="nav-link active" Text="Pedidos" />
