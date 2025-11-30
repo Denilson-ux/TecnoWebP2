@@ -13,7 +13,6 @@ namespace ProyectoVenta.NEGOCIO
         private int stock;
         private int id_tipo;
         private string codigo_producto;
-        private string imagen;
 
         public Producto()
         {
@@ -24,7 +23,6 @@ namespace ProyectoVenta.NEGOCIO
             stock = 0;
             id_tipo = 0;
             codigo_producto = "";
-            imagen = "";
         }
 
         // Propiedades
@@ -70,13 +68,7 @@ namespace ProyectoVenta.NEGOCIO
             set { this.id_tipo = value; }
         }
 
-        public string Imagen
-        {
-            get { return this.imagen; }
-            set { this.imagen = value; }
-        }
-
-        // Métodos CRUD usando los SP y parámetros reales de tu base de datos
+        // Métodos CRUD usando los SP sin el campo imagen
         public bool Guardar()
         {
             iniciarSP("insertarProducto");
@@ -85,7 +77,6 @@ namespace ProyectoVenta.NEGOCIO
             parametroInt(id_tipo, "p_id_tipo");
             parametroDecimal(precio, "p_precio");
             parametroInt(stock, "p_stock");
-            parametroVarchar(imagen ?? "", "p_imagen", 255);
             return ejecutarSP();
         }
 
@@ -98,7 +89,6 @@ namespace ProyectoVenta.NEGOCIO
             parametroInt(id_tipo, "p_id_tipo");
             parametroDecimal(precio, "p_precio");
             parametroInt(stock, "p_stock");
-            parametroVarchar(imagen ?? "", "p_imagen", 255);
             return ejecutarSP();
         }
 
