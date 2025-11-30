@@ -186,12 +186,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarCliente`(
 BEGIN
   SELECT 
     id_cliente,
-    CONCAT(nombre, ' ', apellido) AS nombre_completo,
+    nombre,
+    apellido,
     telefono,
-    direccion
+    email,
+    direccion,
+    referencia,
+    zona
   FROM clientes
   WHERE CONCAT(nombre, ' ', apellido) LIKE CONCAT('%', buscar, '%')
-     OR telefono LIKE CONCAT('%', buscar, '%');
+     OR telefono LIKE CONCAT('%', buscar, '%')
+     OR buscar = '';
 END ;;
 DELIMITER ;
 
