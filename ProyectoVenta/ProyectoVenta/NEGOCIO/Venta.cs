@@ -123,11 +123,15 @@ namespace ProyectoVenta.NEGOCIO
             parametroVarchar(numero_venta, "num_ven", 50);
             parametroFecha(fecha_venta, "fec_ven");
             parametroInt(id_cliente, "id_cli");
+            
+            // NOTA: Aunque el SP recibe estos parámetros, los ignora internamente
+            // Los enviamos para mantener la firma del SP pero con valores dummy
             parametroVarchar(tipo_entrega, "tip_ent", 20);
-            parametroVarchar(direccion_entrega, "dir_ent", 500);
-            parametroDecimal(subtotal, "sub");
             parametroDecimal(descuento, "desc");
             parametroDecimal(costo_delivery, "del");
+            
+            parametroVarchar(direccion_entrega, "dir_ent", 500);
+            parametroDecimal(subtotal, "sub");
             parametroDecimal(total, "tot");
             parametroVarchar(metodo_pago, "met_pag", 50);
             parametroVarchar(estado_venta, "est_ven", 20);
