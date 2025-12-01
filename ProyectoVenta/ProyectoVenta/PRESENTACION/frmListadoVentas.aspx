@@ -17,7 +17,7 @@
         <div class="container-fluid mt-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">PIZZERIA BAMBINO - VENTAS</a>
+                    <a class="navbar-brand" href="#">🍕 PIZZERÍA BAMBINO - VENTAS</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link" Text="Tipo" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos" />
@@ -28,16 +28,16 @@
                 </div>
             </nav>
 
-            <h2 class="text-center mb-4">LISTADO DE VENTAS REALIZADAS</h2>
+            <h2 class="text-center mb-4">📋 LISTADO DE VENTAS REALIZADAS</h2>
 
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
-                    <h5>Filtros de Busqueda</h5>
+                    <h5>🔍 Filtros de Búsqueda</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <label>Numero de Pedido:</label>
+                            <label>Número de Pedido:</label>
                             <asp:TextBox ID="txtBuscarNumero" runat="server" CssClass="form-control" placeholder="Ej: PZ-20251130123456"></asp:TextBox>
                         </div>
                         <div class="col-md-3">
@@ -49,8 +49,22 @@
                             <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                         </div>
                         <div class="col-md-3" style="padding-top: 32px;">
-                            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
-                            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-secondary" OnClick="btnLimpiar_Click" />
+                            <asp:Button ID="btnBuscar" runat="server" Text="🔎 Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
+                            <asp:Button ID="btnLimpiar" runat="server" Text="🔄 Limpiar" CssClass="btn btn-secondary" OnClick="btnLimpiar_Click" />
+                        </div>
+                    </div>
+                    
+                    <!-- Sección de Email para Reportes -->
+                    <div class="row mt-3">
+                        <div class="col-md-8">
+                            <label>📧 Email Destinatario (para enviar reporte):</label>
+                            <asp:TextBox ID="txtEmailDestino" runat="server" CssClass="form-control" 
+                                         placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
+                            <small class="text-muted">Se enviará un reporte en HTML con las ventas filtradas</small>
+                        </div>
+                        <div class="col-md-4" style="padding-top: 32px;">
+                            <asp:Button ID="btnEnviarReporte" runat="server" Text="📧 Enviar Reporte por Email" 
+                                        CssClass="btn btn-warning w-100" OnClick="btnEnviarReporte_Click" />
                         </div>
                     </div>
                 </div>
@@ -58,7 +72,7 @@
 
             <div class="card">
                 <div class="card-header bg-success text-white">
-                    <h5>Ventas Registradas</h5>
+                    <h5>📊 Ventas Registradas</h5>
                 </div>
                 <div class="card-body">
                     <asp:GridView ID="gvVentas" runat="server" CssClass="table table-bordered table-hover"
@@ -67,7 +81,7 @@
                             <asp:BoundField DataField="numero_venta" HeaderText="Nro. Pedido" />
                             <asp:BoundField DataField="fecha_venta" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="False" />
                             <asp:BoundField DataField="nombre_cliente" HeaderText="Cliente" />
-                            <asp:BoundField DataField="telefono" HeaderText="Telefono" />
+                            <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
                             <asp:BoundField DataField="total" HeaderText="Total" DataFormatString="Bs. {0:N2}" HtmlEncode="False" ItemStyle-HorizontalAlign="Right" />
                             <asp:TemplateField HeaderText="Estado">
                                 <ItemTemplate>
@@ -81,7 +95,7 @@
                                 <ItemTemplate>
                                     <asp:HyperLink ID="lnkFactura" runat="server"
                                                    NavigateUrl='<%# "frmFactura.aspx?id=" + Eval("id_venta") %>'
-                                                   Text="Factura"
+                                                   Text="📄 Factura"
                                                    CssClass="btn btn-sm btn-info" />
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -95,7 +109,7 @@
             </div>
 
             <div class="text-center mt-3">
-                <asp:HyperLink runat="server" NavigateUrl="~/frmVenta.aspx" CssClass="btn btn-success btn-lg" Text="Nuevo Pedido" />
+                <asp:HyperLink runat="server" NavigateUrl="~/frmVenta.aspx" CssClass="btn btn-success btn-lg" Text="➕ Nuevo Pedido" />
             </div>
         </div>
 
