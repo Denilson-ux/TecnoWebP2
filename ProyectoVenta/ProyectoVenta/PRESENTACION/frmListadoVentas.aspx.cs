@@ -83,6 +83,83 @@ namespace ProyectoVenta.PRESENTACION
             cargarVentas();
         }
 
+        protected void btnEnviarReporte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtEmailDestino.Text))
+                {
+                    Response.Write("<script>alert('⚠️ Por favor ingrese un email destinatario');</script>");
+                    return;
+                }
+
+                // Validar formato de email
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtEmailDestino.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    Response.Write("<script>alert('⚠️ Por favor ingrese un email válido');</script>");
+                    return;
+                }
+
+                // Obtener datos filtrados
+                DataTable dt = objVenta.listar();
+
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    Response.Write("<script>alert('⚠️ No hay ventas en la base de datos');</script>");
+                    return;
+                }
+
+                // Aplicar filtros
+                DateTime fechaInicio = DateTime.Now.AddMonths(-1);
+                DateTime fechaFin = DateTime.Now;
+
+                if (!string.IsNullOrEmpty(txtFechaDesde.Text) && !string.IsNullOrEmpty(txtFechaHasta.Text))
+                {
+                    fechaInicio = DateTime.Parse(txtFechaDesde.Text);
+                    fechaFin = DateTime.Parse(txtFechaHasta.Text);
+                    
+                    DataView dv = dt.DefaultView;
+                    dv.RowFilter = string.Format("fecha_venta >= #{0}# AND fecha_venta < #{1}#",
+                        fechaInicio.ToString("MM/dd/yyyy"),
+                        fechaFin.AddDays(1).ToString("MM/dd/yyyy"));
+                    dt = dv.ToTable();
+                }
+
+                // Filtrar por cliente si se especificó
+                string nombreCliente = "Todos";
+                if (!string.IsNullOrEmpty(txtBuscarNumero.Text))
+                {
+                    DataView dv = dt.DefaultView;
+                    dv.RowFilter = "numero_venta LIKE '%" + txtBuscarNumero.Text + "%'";
+                    dt = dv.ToTable();
+                }
+
+                if (dt.Rows.Count == 0)
+                {
+                    Response.Write("<script>alert('⚠️ No hay ventas para generar reporte con los filtros seleccionados');</script>");
+                    return;
+                }
+
+                // Generar y enviar email
+                EmailService emailService = new EmailService();
+                
+                string cuerpoHtml = emailService.GenerarCuerpoReporte(dt, fechaInicio, fechaFin, nombreCliente);
+                string asunto = $"📊 Reporte de Ventas - Pizzería Bambino ({fechaInicio:dd/MM/yyyy} al {fechaFin:dd/MM/yyyy})";
+                
+                bool enviado = emailService.EnviarReporte(txtEmailDestino.Text, asunto, cuerpoHtml);
+                
+                if (enviado)
+                {
+                    Response.Write("<script>alert('✅ Reporte enviado correctamente a:\n" + txtEmailDestino.Text + "\n\nRevise su bandeja de entrada.');</script>");
+                    txtEmailDestino.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('❌ Error al enviar reporte:\n" + ex.Message.Replace("'", "\\''") + "');</script>");
+            }
+        }
+
         protected string GetEstadoBadgeClass(string estado)
         {
             switch (estado.ToLower())
