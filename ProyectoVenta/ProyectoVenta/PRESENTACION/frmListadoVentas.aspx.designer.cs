@@ -18,6 +18,6 @@ namespace ProyectoVenta.PRESENTACION
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         protected global::System.Web.UI.WebControls.Button btnLimpiar;
         protected global::System.Web.UI.WebControls.GridView gvVentas;
-        protected global::System.Web.UI.WebControls.Label lblTotal;
+        protected global::System.Web.UI.WebControls.Label lblTotalGeneral;
     }
 }
