@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Factura - Pizzería Bambino</title>
+    <title>Factura - Pizzeria Bambino</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @media print {
@@ -39,9 +39,9 @@
                 <div class="header-factura">
                     <div class="row">
                         <div class="col-md-8">
-                            <h1 class="text-danger">🍕 PIZZERÍA BAMBINO</h1>
-                            <p class="mb-0"><strong>Teléfono:</strong> (591) 123-45678</p>
-                            <p class="mb-0"><strong>Dirección:</strong> Warnes, Santa Cruz - Bolivia</p>
+                            <h1 class="text-danger">PIZZERIA BAMBINO</h1>
+                            <p class="mb-0"><strong>Telefono:</strong> (591) 123-45678</p>
+                            <p class="mb-0"><strong>Direccion:</strong> Montero, Santa Cruz - Bolivia</p>
                         </div>
                         <div class="col-md-4 text-end">
                             <h3>FACTURA</h3>
@@ -51,23 +51,24 @@
                     </div>
                 </div>
 
+
                 <!-- Información del Cliente -->
                 <div class="info-section">
-                    <h5 class="mb-3">👤 Información del Cliente</h5>
+                    <h5 class="mb-3">Informacion del Cliente</h5>
                     <div class="row">
                         <div class="col-md-6">
                             <p class="mb-1"><strong>Cliente:</strong> <asp:Label ID="lblCliente" runat="server"></asp:Label></p>
-                            <p class="mb-1"><strong>Teléfono:</strong> <asp:Label ID="lblTelefono" runat="server"></asp:Label></p>
+                            <p class="mb-1"><strong>Telefono:</strong> <asp:Label ID="lblTelefono" runat="server"></asp:Label></p>
                         </div>
                         <div class="col-md-6">
-                            <p class="mb-1"><strong>Dirección de Entrega:</strong></p>
+                            <p class="mb-1"><strong>Direccion de Entrega:</strong></p>
                             <p class="mb-1"><asp:Label ID="lblDireccion" runat="server"></asp:Label></p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Detalles del Pedido -->
-                <h5 class="mb-3">📋 Detalle del Pedido</h5>
+                <h5 class="mb-3">Detalle del Pedido</h5>
                 <asp:GridView ID="gvDetalle" runat="server" CssClass="table table-bordered"
                               AutoGenerateColumns="False">
                     <Columns>
@@ -90,7 +91,7 @@
                                     <asp:Label ID="lblEstado" runat="server"></asp:Label>
                                 </span>
                             </p>
-                            <p class="mb-1"><strong>Método de Pago:</strong> <asp:Label ID="lblMetodoPago" runat="server"></asp:Label></p>
+                            <p class="mb-1"><strong>Metodo de Pago:</strong> <asp:Label ID="lblMetodoPago" runat="server"></asp:Label></p>
                             <asp:Panel ID="pnlPayPal" runat="server" Visible="false">
                                 <p class="mb-0"><strong>ID PayPal:</strong> <small><asp:Label ID="lblPayPalID" runat="server"></asp:Label></small></p>
                             </asp:Panel>
@@ -120,19 +121,19 @@
 
                 <!-- Mensaje de Agradecimiento -->
                 <div class="text-center mt-4 pt-3 border-top">
-                    <p class="mb-1"><strong>¡Gracias por su compra!</strong></p>
+                    <p class="mb-1"><strong>Gracias por su compra</strong></p>
                     <p class="text-muted small">Este documento es un comprobante de su pedido</p>
                 </div>
 
                 <!-- Botones -->
                 <div class="text-center mt-4 no-print">
                     <button type="button" class="btn btn-primary btn-lg" onclick="window.print();">
-                        🖨️ Imprimir Factura
+                        Imprimir Factura
                     </button>
                     <asp:HyperLink runat="server" NavigateUrl="~/frmListadoVentas.aspx" 
-                                   CssClass="btn btn-secondary btn-lg" Text="← Volver al Listado" />
+                                   CssClass="btn btn-secondary btn-lg" Text="Volver al Listado" />
                     <asp:HyperLink runat="server" NavigateUrl="~/frmVenta.aspx" 
-                                   CssClass="btn btn-success btn-lg" Text="➕ Nuevo Pedido" />
+                                   CssClass="btn btn-success btn-lg" Text="Nuevo Pedido" />
                 </div>
             </div>
         </div>

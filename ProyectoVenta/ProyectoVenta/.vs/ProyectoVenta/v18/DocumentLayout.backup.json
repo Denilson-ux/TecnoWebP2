@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|c:\\users\\asus\\desktop\\10 semestre\\tecnologia web\\instaladores de p2\\proyecto de venta\\proyectoventa\\proyectoventa\\proyectoventa\\presentacion\\frmventa.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|solutionrelative:presentacion\\frmventa.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|c:\\users\\asus\\desktop\\10 semestre\\tecnologia web\\instaladores de p2\\proyecto de venta\\proyectoventa\\proyectoventa\\proyectoventa\\presentacion\\frmfactura.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|solutionrelative:presentacion\\frmfactura.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|c:\\users\\asus\\desktop\\10 semestre\\tecnologia web\\instaladores de p2\\proyecto de venta\\proyectoventa\\proyectoventa\\proyectoventa\\presentacion\\frmlistadoventas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|solutionrelative:presentacion\\frmlistadoventas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|c:\\users\\asus\\desktop\\10 semestre\\tecnologia web\\instaladores de p2\\proyecto de venta\\proyectoventa\\proyectoventa\\proyectoventa\\presentacion\\frmlistadoventas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|solutionrelative:presentacion\\frmlistadoventas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|c:\\users\\asus\\desktop\\10 semestre\\tecnologia web\\instaladores de p2\\proyecto de venta\\proyectoventa\\proyectoventa\\proyectoventa\\presentacion\\frmcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|solutionrelative:presentacion\\frmcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|c:\\users\\asus\\desktop\\10 semestre\\tecnologia web\\instaladores de p2\\proyecto de venta\\proyectoventa\\proyectoventa\\proyectoventa\\presentacion\\frmventa.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B4F6EDB-A5E3-4C0C-B180-2BE32643475A}|PRESENTACION\\PRESENTACION.csproj|solutionrelative:presentacion\\frmventa.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmListadoVentas.aspx",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmListadoVentas.aspx",
+              "RelativeDocumentMoniker": "PRESENTACION\\frmListadoVentas.aspx",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmListadoVentas.aspx",
+              "RelativeToolTip": "PRESENTACION\\frmListadoVentas.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-01T02:37:20.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmVenta.aspx",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmVenta.aspx",
+              "RelativeDocumentMoniker": "PRESENTACION\\frmVenta.aspx",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmVenta.aspx",
+              "RelativeToolTip": "PRESENTACION\\frmVenta.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-01T02:35:09.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmListadoVentas.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmListadoVentas.aspx.cs",
+              "RelativeDocumentMoniker": "PRESENTACION\\frmListadoVentas.aspx.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmListadoVentas.aspx.cs",
+              "RelativeToolTip": "PRESENTACION\\frmListadoVentas.aspx.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAUwCcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T02:31:19.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmFactura.aspx",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmFactura.aspx",
+              "RelativeDocumentMoniker": "PRESENTACION\\frmFactura.aspx",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmFactura.aspx",
+              "RelativeToolTip": "PRESENTACION\\frmFactura.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-01T02:27:14.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmVenta.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmVenta.aspx.cs",
+              "RelativeDocumentMoniker": "PRESENTACION\\frmVenta.aspx.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmVenta.aspx.cs",
+              "RelativeToolTip": "PRESENTACION\\frmVenta.aspx.cs",
+              "ViewState": "AgIAAP4AAAAAAAAAAAAUwAsBAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T02:07:51.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmCliente.aspx",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmCliente.aspx",
+              "RelativeDocumentMoniker": "PRESENTACION\\frmCliente.aspx",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\10 Semestre\\tecnologia web\\Instaladores de P2\\Proyecto de venta\\ProyectoVenta\\ProyectoVenta\\ProyectoVenta\\PRESENTACION\\frmCliente.aspx",
+              "RelativeToolTip": "PRESENTACION\\frmCliente.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-11-30T16:01:28.296Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

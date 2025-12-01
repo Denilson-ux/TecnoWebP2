@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="frmCliente.aspx" />
+    <Content Include="frmFactura.aspx" />
+    <Content Include="frmListadoVentas.aspx" />
     <Content Include="frmProducto.aspx" />
     <Content Include="frmTipo.aspx" />
     <Content Include="frmVenta.aspx" />
@@ -77,6 +79,20 @@
     </Compile>
     <Compile Include="frmCliente.aspx.designer.cs">
       <DependentUpon>frmCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFactura.aspx.cs">
+      <DependentUpon>frmFactura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmFactura.aspx.designer.cs">
+      <DependentUpon>frmFactura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoVentas.aspx.cs">
+      <DependentUpon>frmListadoVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListadoVentas.aspx.designer.cs">
+      <DependentUpon>frmListadoVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmProducto.aspx.cs">
       <DependentUpon>frmProducto.aspx</DependentUpon>

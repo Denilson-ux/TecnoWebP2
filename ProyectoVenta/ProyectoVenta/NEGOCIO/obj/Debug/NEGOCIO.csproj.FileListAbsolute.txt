@@ -57,13 +57,11 @@ C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de 
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\System.Buffers.dll
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\K4os.Compression.LZ4.dll
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\K4os.Hash.xxHash.dll
-C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\System.Memory.dll
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\DATOS.pdb
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\bin\Debug\MySql.Data.xml
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\obj\Debug\NEGOCIO.csproj.AssemblyReference.cache
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\obj\Debug\NEGOCIO.csproj.CoreCompileInputs.cache
-C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\obj\Debug\NEGOCIO.csproj.CopyComplete
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\obj\Debug\NEGOCIO.dll
 C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\obj\Debug\NEGOCIO.pdb
+C:\Users\Asus\Desktop\10 Semestre\tecnologia web\Instaladores de P2\Proyecto de venta\ProyectoVenta\ProyectoVenta\ProyectoVenta\NEGOCIO\obj\Debug\NEGOCIO.csproj.Up2Date

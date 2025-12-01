@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Registro de Pedidos - Pizzería</title>
+    <title>Registro de Pedidos - Pizzeria</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -16,7 +16,7 @@
         <div class="container-fluid mt-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">🍕 PIZZERÍA BAMBINO - PEDIDO</a>
+                    <a class="navbar-brand" href="#">PIZZERIA BAMBINO - PEDIDO</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link" Text="Tipo" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos" />
@@ -52,7 +52,7 @@
                                     <label>Cliente:</label>
                                     <div class="input-group">
                                         <asp:TextBox ID="txtCliente" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Seleccione un cliente"></asp:TextBox>
-                                        <asp:Button ID="btnBuscarCliente" runat="server" Text="🔍 Buscar" CssClass="btn btn-info" OnClick="btnBuscarCliente_Click" />
+                                        <asp:Button ID="btnBuscarCliente" runat="server" Text="Buscar" CssClass="btn btn-info" OnClick="btnBuscarCliente_Click" />
                                         <asp:HiddenField ID="hfIdCliente" runat="server" Value="0" />
                                     </div>
                                 </div>
@@ -60,14 +60,14 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <label>Ubicación / Dirección entrega:</label>
+                                    <label>Ubicacion / Direccion entrega:</label>
                                     <div class="input-group">
                                         <asp:TextBox ID="txtDireccionEntrega" runat="server"
                                                      CssClass="form-control" ReadOnly="true"
                                                      Placeholder="Seleccione en el mapa"></asp:TextBox>
                                         <button type="button" class="btn btn-outline-primary"
                                                 onclick="mostrarMapaUbicacion();">
-                                            Seleccionar ubicación
+                                            Seleccionar ubicacion
                                         </button>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                             <asp:TextBox ID="txtPrecioUnit" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                         </div>
                         <div class="col-md-1" style="padding-top: 32px;">
-                            <asp:Button ID="btnAgregar" runat="server" Text="➕" CssClass="btn btn-success btn-lg" OnClick="btnAgregar_Click" />
+                            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success btn-lg" OnClick="btnAgregar_Click" />
                         </div>
                     </div>
 
@@ -158,7 +158,7 @@
                             <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unit." DataFormatString="Bs. {0:N2}" HtmlEncode="False" />
                             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="Bs. {0:N2}" HtmlEncode="False" />
                             <asp:BoundField DataField="NotasEspeciales" HeaderText="Notas" />
-                            <asp:CommandField ShowDeleteButton="True" DeleteText="❌" ButtonType="Button" />
+                            <asp:CommandField ShowDeleteButton="True" DeleteText="Quitar" ButtonType="Button" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -183,7 +183,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-info text-white">
-                        <h5 class="modal-title">🔎 Seleccionar Cliente</h5>
+                        <h5 class="modal-title">Seleccionar Cliente</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
@@ -203,9 +203,9 @@
                             <Columns>
                                 <asp:BoundField DataField="id_cliente" HeaderText="ID" />
                                 <asp:BoundField DataField="nombre_completo" HeaderText="Nombre" />
-                                <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
-                                <asp:BoundField DataField="direccion" HeaderText="Dirección" />
-                                <asp:TemplateField HeaderText="Acción">
+                                <asp:BoundField DataField="telefono" HeaderText="Telefono" />
+                                <asp:BoundField DataField="direccion" HeaderText="Direccion" />
+                                <asp:TemplateField HeaderText="Accion">
                                     <ItemTemplate>
                                         <asp:Button ID="btnSelCliente" runat="server"
                                             Text="Seleccionar"
@@ -340,11 +340,11 @@
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title">Seleccionar Ubicación de Entrega</h5>
+                <h5 class="modal-title">Seleccionar Ubicacion de Entrega</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-                <label>Buscar dirección:</label>
+                <label>Buscar direccion:</label>
                 <div class="input-group mb-2">
                   <input id="txtBuscarDir" type="text" class="form-control" placeholder="Ej: Warnes, Bolivia" />
                   <button type="button" class="btn btn-success" onclick="buscarDireccion();">
@@ -355,16 +355,16 @@
                 <div id="map" style="width:100%;height:350px;"></div>
 
                 <div class="mt-3">
-                  <strong>Ubicación seleccionada:</strong>
+                  <strong>Ubicacion seleccionada:</strong>
                   <div id="lblUbicacionSel" class="small text-muted">
-                    Ninguna ubicación seleccionada
+                    Ninguna ubicacion seleccionada
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" onclick="confirmarUbicacion();">
-                  Usar esta ubicación
+                  Usar esta ubicacion
                 </button>
               </div>
             </div>
@@ -372,6 +372,8 @@
         </div>
 
         <script src="https://www.paypal.com/sdk/js?client-id=Aafq8M27njB8pt4MrjbFsGE74YukRHpMuhCuHMS8SA6x6Fwf7z9BDCnaBPeOFTSr19WXQEXtgNcd6RK_&currency=USD"></script>
+
+
 
         <script>
             function obtenerTotalNumerico() {
