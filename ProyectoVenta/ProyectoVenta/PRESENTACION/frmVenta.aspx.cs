@@ -184,7 +184,6 @@ namespace ProyectoVenta.PRESENTACION
             {
                 DataTable dt = objCliente.Buscar(filtro);
                 
-                // Agregar columna nombre_completo concatenando nombre y apellido
                 if (!dt.Columns.Contains("nombre_completo"))
                 {
                     dt.Columns.Add("nombre_completo", typeof(string));
@@ -264,10 +263,19 @@ namespace ProyectoVenta.PRESENTACION
                     objVenta.FechaVenta = DateTime.Parse(txtFecha.Text);
                     objVenta.IdCliente = int.Parse(hfIdCliente.Value);
                     objVenta.DireccionEntrega = txtDireccionEntrega.Text.Trim();
-                    objVenta.Subtotal = decimal.Parse(lblSubtotal.Text.Replace("Bs. ", ""));
-                    objVenta.Total = decimal.Parse(lblTotal.Text.Replace("Bs. ", ""));
-                    objVenta.EstadoVenta = "Pendiente";
+                    objVenta.MetodoPago = "PayPal";
                     objVenta.Observaciones = txtObservaciones.Text.Trim();
+                    if (!string.IsNullOrEmpty(hfPayPalOrderID.Value))
+                    {
+                        objVenta.Observaciones += " | PayPal Order ID: " + hfPayPalOrderID.Value;
+                    }
+
+                    decimal subtotal = 0;
+                    foreach (var item in listaDetalles)
+                        subtotal += item.Subtotal;
+                    objVenta.Subtotal = subtotal;
+                    objVenta.Total = subtotal;
+                    objVenta.EstadoVenta = "Pendiente";
 
                     if (objVenta.guardar())
                     {
@@ -292,8 +300,23 @@ namespace ProyectoVenta.PRESENTACION
 
                         if (detallesOk)
                         {
-                            mostrarMensaje("✅ Venta registrada correctamente. Nro: " + txtNumeroVenta.Text, "success");
-                            limpiarFormulario();
+                            string script = @"
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: '¡Venta Registrada!',
+                                    html: 'Pedido Nro: " + txtNumeroVenta.Text + @"<br>Total: " + lblTotal.Text + @"<br><br>¿Desea ver la factura?',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Ver Factura',
+                                    cancelButtonText: 'Nueva Venta'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = 'frmFactura.aspx?id=" + idVenta + @"';
+                                    } else {
+                                        window.location.href = 'frmVenta.aspx';
+                                    }
+                                });
+                            ";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "VentaGuardada", script, true);
                         }
                         else
                         {
@@ -401,6 +424,8 @@ namespace ProyectoVenta.PRESENTACION
             lblTotal.Text = "Bs. 0.00";
             limpiarDetalle();
             lblMensaje.Visible = false;
+            hfPagoAprobado.Value = "0";
+            hfPayPalOrderID.Value = "";
         }
 
         private void mostrarMensaje(string mensaje, string tipo)
