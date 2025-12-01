@@ -104,23 +104,24 @@ DROP TABLE IF EXISTS `ventas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ventas` (
   `id_venta` int NOT NULL AUTO_INCREMENT,
-  `id_cliente` int NOT NULL,
+  `numero_venta` varchar(50) NOT NULL,
   `fecha_venta` datetime DEFAULT CURRENT_TIMESTAMP,
+  `id_cliente` int NOT NULL,
+  `tipo_entrega` varchar(20) DEFAULT 'Local',
+  `direccion_entrega` varchar(500) DEFAULT NULL,
+  `subtotal` decimal(10,2) DEFAULT 0.00,
+  `descuento` decimal(10,2) DEFAULT 0.00,
+  `costo_delivery` decimal(10,2) DEFAULT 0.00,
   `total` decimal(10,2) NOT NULL,
-  `estado` varchar(50) DEFAULT 'Pendiente',
+  `metodo_pago` varchar(50) DEFAULT 'Efectivo',
+  `estado_venta` varchar(20) DEFAULT 'Pendiente',
+  `observaciones` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_venta`),
+  UNIQUE KEY `numero_venta` (`numero_venta`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ventas`
---
-LOCK TABLES `ventas` WRITE;
-/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
-UNLOCK TABLES;
 
 -- Table structure for table `detalle_ventas`
 --
@@ -131,9 +132,11 @@ CREATE TABLE `detalle_ventas` (
   `id_detalle` int NOT NULL AUTO_INCREMENT,
   `id_venta` int NOT NULL,
   `id_producto` int NOT NULL,
+  `id_tamanio` int DEFAULT 0,
   `cantidad` int NOT NULL,
   `precio_unitario` decimal(10,2) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
+  `notas_especiales` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`),
   KEY `id_venta` (`id_venta`),
   KEY `id_producto` (`id_producto`),
@@ -143,19 +146,15 @@ CREATE TABLE `detalle_ventas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `detalle_ventas`
---
-LOCK TABLES `detalle_ventas` WRITE;
-/*!40000 ALTER TABLE `detalle_ventas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detalle_ventas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping routines for database 'bdventa'
 --
 
--- Procedimientos para Clientes
+-- =====================================================
+-- PROCEDIMIENTOS ALMACENADOS PARA CLIENTES
+-- =====================================================
+
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `actualizarCliente`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarCliente`(
   IN p_id_cliente INT,
   IN p_nombre VARCHAR(100),
@@ -176,10 +175,11 @@ BEGIN
       referencia = p_referencia,
       zona = p_zona
   WHERE id_cliente = p_id_cliente;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `buscarCliente`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarCliente`(
   IN buscar VARCHAR(50)
 )
@@ -197,20 +197,22 @@ BEGIN
   WHERE CONCAT(nombre, ' ', apellido) LIKE CONCAT('%', buscar, '%')
      OR telefono LIKE CONCAT('%', buscar, '%')
      OR buscar = '';
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `eliminarCliente`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarCliente`(
   IN p_id_cliente INT
 )
 BEGIN
   DELETE FROM clientes
   WHERE id_cliente = p_id_cliente;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `insertarCliente`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarCliente`(
   IN p_nombre VARCHAR(100),
   IN p_apellido VARCHAR(100),
@@ -223,11 +225,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarCliente`(
 BEGIN
   INSERT INTO clientes (nombre, apellido, telefono, email, direccion, referencia, zona)
   VALUES (p_nombre, p_apellido, p_telefono, p_email, p_direccion, p_referencia, p_zona);
-END ;;
+END;;
 DELIMITER ;
 
--- Procedimientos para Productos (SIN campo imagen)
+-- =====================================================
+-- PROCEDIMIENTOS ALMACENADOS PARA PRODUCTOS
+-- =====================================================
+
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `actualizarProducto`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarProducto`(
   IN p_id_producto INT,
   IN p_nombre VARCHAR(100),
@@ -244,10 +250,11 @@ BEGIN
       precio = p_precio,
       stock = p_stock
   WHERE id_producto = p_id_producto;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `buscarProducto`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarProducto`(
   IN buscar VARCHAR(100)
 )
@@ -262,20 +269,22 @@ BEGIN
   FROM productos p
   INNER JOIN tipo t ON p.id_tipo = t.id_tipo
   WHERE (buscar = '' OR p.nombre LIKE CONCAT('%', buscar, '%'));
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `eliminarProducto`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarProducto`(
   IN p_id_producto INT
 )
 BEGIN
   DELETE FROM productos
   WHERE id_producto = p_id_producto;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `insertarProducto`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarProducto`(
   IN p_nombre VARCHAR(100),
   IN p_descripcion VARCHAR(255),
@@ -286,11 +295,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarProducto`(
 BEGIN
   INSERT INTO productos (nombre, descripcion, id_tipo, precio, stock)
   VALUES (p_nombre, p_descripcion, p_id_tipo, p_precio, p_stock);
-END ;;
+END;;
 DELIMITER ;
 
--- Procedimientos para Tipos
+-- =====================================================
+-- PROCEDIMIENTOS ALMACENADOS PARA TIPOS
+-- =====================================================
+
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `actualizarTipo`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarTipo`(
   IN p_id_tipo INT,
   IN p_nombre VARCHAR(50)
@@ -299,10 +312,11 @@ BEGIN
   UPDATE tipo
   SET nombre = p_nombre
   WHERE id_tipo = p_id_tipo;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `buscarTipo`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarTipo`(
   IN p_nombre VARCHAR(50)
 )
@@ -317,27 +331,220 @@ BEGIN
     WHERE nombre LIKE CONCAT('%', p_nombre, '%')
     ORDER BY nombre;
   END IF;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `eliminarTipo`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarTipo`(
   IN p_id_tipo INT
 )
 BEGIN
   DELETE FROM tipo
   WHERE id_tipo = p_id_tipo;
-END ;;
+END;;
 DELIMITER ;
 
 DELIMITER ;;
+DROP PROCEDURE IF EXISTS `insertarTipo`;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarTipo`(
   IN p_nombre VARCHAR(50)
 )
 BEGIN
   INSERT INTO tipo (nombre)
   VALUES (p_nombre);
-END ;;
+END;;
+DELIMITER ;
+
+-- =====================================================
+-- PROCEDIMIENTOS ALMACENADOS PARA VENTAS
+-- =====================================================
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `guardarVenta`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `guardarVenta`(
+  IN num_ven VARCHAR(50),
+  IN fec_ven DATETIME,
+  IN id_cli INT,
+  IN tip_ent VARCHAR(20),
+  IN dir_ent VARCHAR(500),
+  IN sub DECIMAL(10,2),
+  IN descuento DECIMAL(10,2),
+  IN del DECIMAL(10,2),
+  IN tot DECIMAL(10,2),
+  IN met_pag VARCHAR(50),
+  IN est_ven VARCHAR(20),
+  IN obs VARCHAR(500)
+)
+BEGIN
+  INSERT INTO ventas (
+    numero_venta,
+    fecha_venta,
+    id_cliente,
+    tipo_entrega,
+    direccion_entrega,
+    subtotal,
+    descuento,
+    costo_delivery,
+    total,
+    metodo_pago,
+    estado_venta,
+    observaciones
+  ) VALUES (
+    num_ven,
+    fec_ven,
+    id_cli,
+    tip_ent,
+    dir_ent,
+    sub,
+    descuento,
+    del,
+    tot,
+    met_pag,
+    est_ven,
+    obs
+  );
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `modificarVenta`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarVenta`(
+  IN id_ven INT,
+  IN est_ven VARCHAR(20),
+  IN obs VARCHAR(500)
+)
+BEGIN
+  UPDATE ventas
+  SET estado_venta = est_ven,
+      observaciones = obs
+  WHERE id_venta = id_ven;
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `buscarVenta`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarVenta`(
+  IN buscar VARCHAR(50)
+)
+BEGIN
+  SELECT 
+    v.id_venta,
+    v.numero_venta,
+    v.fecha_venta,
+    v.id_cliente,
+    CONCAT(c.nombre, ' ', c.apellido) AS nombre_cliente,
+    c.telefono,
+    v.tipo_entrega,
+    v.direccion_entrega,
+    v.subtotal,
+    v.descuento,
+    v.costo_delivery,
+    v.total,
+    v.metodo_pago,
+    v.estado_venta,
+    v.observaciones
+  FROM ventas v
+  INNER JOIN clientes c ON v.id_cliente = c.id_cliente
+  WHERE v.numero_venta LIKE CONCAT('%', buscar, '%')
+     OR buscar = ''
+  ORDER BY v.fecha_venta DESC;
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `listarVentas`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarVentas`()
+BEGIN
+  SELECT 
+    v.id_venta,
+    v.numero_venta,
+    v.fecha_venta,
+    v.id_cliente,
+    CONCAT(c.nombre, ' ', c.apellido) AS nombre_cliente,
+    c.telefono,
+    v.tipo_entrega,
+    v.direccion_entrega,
+    v.subtotal,
+    v.descuento,
+    v.costo_delivery,
+    v.total,
+    v.metodo_pago,
+    v.estado_venta,
+    v.observaciones
+  FROM ventas v
+  INNER JOIN clientes c ON v.id_cliente = c.id_cliente
+  ORDER BY v.fecha_venta DESC;
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `obtenerUltimaVenta`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerUltimaVenta`()
+BEGIN
+  SELECT id_venta
+  FROM ventas
+  ORDER BY id_venta DESC
+  LIMIT 1;
+END;;
+DELIMITER ;
+
+-- =====================================================
+-- PROCEDIMIENTOS ALMACENADOS PARA DETALLE VENTAS
+-- =====================================================
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `guardarDetalleVenta`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `guardarDetalleVenta`(
+  IN id_ven INT,
+  IN id_prod INT,
+  IN id_tam INT,
+  IN cant INT,
+  IN precio DECIMAL(10,2),
+  IN sub DECIMAL(10,2),
+  IN notas VARCHAR(500)
+)
+BEGIN
+  INSERT INTO detalle_ventas (
+    id_venta,
+    id_producto,
+    id_tamanio,
+    cantidad,
+    precio_unitario,
+    subtotal,
+    notas_especiales
+  ) VALUES (
+    id_ven,
+    id_prod,
+    id_tam,
+    cant,
+    precio,
+    sub,
+    notas
+  );
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `listarDetallesPorVenta`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarDetallesPorVenta`(
+  IN id_ven INT
+)
+BEGIN
+  SELECT 
+    dv.id_detalle,
+    dv.id_venta,
+    dv.id_producto,
+    p.nombre AS nombre_producto,
+    dv.id_tamanio,
+    dv.cantidad,
+    dv.precio_unitario,
+    dv.subtotal,
+    dv.notas_especiales
+  FROM detalle_ventas dv
+  INNER JOIN productos p ON dv.id_producto = p.id_producto
+  WHERE dv.id_venta = id_ven;
+END;;
 DELIMITER ;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -349,4 +556,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-29 21:04:42
+-- Dump completed
