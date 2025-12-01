@@ -1,10 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmVenta.aspx.cs" Inherits="ProyectoVenta.PRESENTACION.frmVenta" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmVenta.aspx.cs" Inherits="ProyectoVenta.PRESENTACION.frmVenta" %>
 
 <!DOCTYPE html>
 <html>
 <head runat="server">
     <title>Registro de Pedidos - Pizzería</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .orden-detalle { background-color: #fff3cd; padding: 15px; border-radius: 8px; }
         .totales { background-color: #d1ecf1; padding: 15px; border-radius: 8px; }
@@ -21,13 +22,13 @@
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmCliente.aspx" CssClass="nav-link" Text="Clientes" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmVenta.aspx" CssClass="nav-link active" Text="Pedidos" />
+                        <asp:HyperLink runat="server" NavigateUrl="~/frmListadoVentas.aspx" CssClass="nav-link" Text="Ver Ventas" />
                     </div>
                 </div>
             </nav>
 
             <h2 class="text-center mb-4">REGISTRO DE PEDIDO</h2>
 
-            <!-- Información de la Venta -->
             <div class="row mb-3">
                 <div class="col-md-8">
                     <div class="card">
@@ -57,7 +58,6 @@
                                 </div>
                             </div>
 
-                            <!-- Ubicación / Dirección entrega -->
                             <div class="row mb-3">
                                 <div class="col-md-12">
                                     <label>Ubicación / Dirección entrega:</label>
@@ -72,48 +72,45 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
 
-                <!-- Panel de Totales -->
                 <div class="col-md-4">
                     <div class="card totales">
                         <div class="card-body">
                             <h5 class="text-center mb-3">TOTALES</h5>
                             <table class="table table-sm">
-    <tr>
-        <td><strong>Subtotal:</strong></td>
-        <td class="text-end">
-            <asp:Label ID="lblSubtotal" runat="server" Text="Bs. 0,00"></asp:Label>
-        </td>
-    </tr>
-    <tr class="table-success">
-        <td><strong>TOTAL:</strong></td>
-        <td class="text-end">
-            <strong>
-                <asp:Label ID="lblTotal" runat="server" Text="Bs. 0,00"></asp:Label>
-            </strong>
-        </td>
-    </tr>
-</table>
-
+                                <tr>
+                                    <td><strong>Subtotal:</strong></td>
+                                    <td class="text-end">
+                                        <asp:Label ID="lblSubtotal" runat="server" Text="Bs. 0,00"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr class="table-success">
+                                    <td><strong>TOTAL:</strong></td>
+                                    <td class="text-end">
+                                        <strong>
+                                            <asp:Label ID="lblTotal" runat="server" Text="Bs. 0,00"></asp:Label>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </table>
 
                             <div class="mb-2 text-center">
                                 <label>Pago con PayPal:</label>
                                 <div id="paypal-button-container"></div>
                                 <asp:HiddenField ID="hfPagoAprobado" runat="server" Value="0" />
+                                <asp:HiddenField ID="hfPayPalOrderID" runat="server" Value="" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Agregar Productos -->
             <div class="card mb-3">
                 <div class="card-header bg-warning">
-                    <h5> Agregar Productos al Pedido</h5>
+                    <h5>Agregar Productos al Pedido</h5>
                 </div>
                 <div class="card-body orden-detalle">
                     <div class="row mb-3">
@@ -148,7 +145,6 @@
                 </div>
             </div>
 
-            <!-- Detalle del Pedido -->
             <div class="card mb-3">
                 <div class="card-header bg-success text-white">
                     <h5>Detalle del Pedido</h5>
@@ -168,7 +164,6 @@
                 </div>
             </div>
 
-            <!-- Observaciones y Botones -->
             <div class="row mb-4">
                 <div class="col-md-8">
                     <label>Observaciones:</label>
@@ -221,13 +216,11 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- HiddenFields para mapa -->
         <asp:HiddenField ID="hfLatitud" runat="server" />
         <asp:HiddenField ID="hfLongitud" runat="server" />
         <asp:HiddenField ID="hfDireccionMapa" runat="server" />
@@ -257,7 +250,7 @@
             }
 
             function initMap() {
-                const defaultPos = { lat: -16.5, lng: -68.15 }; // ajusta a tu zona
+                const defaultPos = { lat: -16.5, lng: -68.15 };
 
                 geocoder = new google.maps.Geocoder();
 
@@ -351,7 +344,6 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-
                 <label>Buscar dirección:</label>
                 <div class="input-group mb-2">
                   <input id="txtBuscarDir" type="text" class="form-control" placeholder="Ej: Warnes, Bolivia" />
@@ -368,7 +360,6 @@
                     Ninguna ubicación seleccionada
                   </div>
                 </div>
-
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -380,86 +371,87 @@
           </div>
         </div>
 
-        <!-- SDK de PayPal (usa aquí tu client-id LIVE o SANDBOX según corresponda) -->
-        
-        <script
-    src="https://www.paypal.com/sdk/js?client-id=Aafq8M27njB8pt4MrjbFsGE74YukRHpMuhCuHMS8SA6x6Fwf7z9BDCnaBPeOFTSr19WXQEXtgNcd6RK_&currency=USD">
-</script>
+        <script src="https://www.paypal.com/sdk/js?client-id=Aafq8M27njB8pt4MrjbFsGE74YukRHpMuhCuHMS8SA6x6Fwf7z9BDCnaBPeOFTSr19WXQEXtgNcd6RK_&currency=USD"></script>
 
-
-
-
-
-        <!-- Script de PayPal -->
         <script>
             function obtenerTotalNumerico() {
                 var txt = document.getElementById("<%= lblTotal.ClientID %>").innerText || "0";
-        txt = txt.replace("Bs.", "").replace("Bs", "").trim();
-        // ajusta según el formato de tu Label:
-        // si es "Bs. 52,00":
-        txt = txt.replace(".", "").replace(",", ".");
-        // si fuera "Bs. 52.00" usarías: txt = txt.replace(",", "");
-        var valor = parseFloat(txt);
-        if (isNaN(valor)) valor = 0;
-        return valor;
-    }
-
-    if (typeof paypal === "undefined") {
-        console.error("paypal no está definido; revisa si el SDK cargó correctamente.");
-    } else {
-        paypal.Buttons({
-            createOrder: function (data, actions) {
-                var totalBs = obtenerTotalNumerico();
-                var tipoCambio = 7;   // ajusta
-                var totalUsd = totalBs / tipoCambio;
-
-                if (totalUsd <= 0) {
-                    alert("El total a pagar debe ser mayor a 0.");
-                    // IMPORTANTE: devolver una promesa rechazada para que PayPal no intente continuar
-                    return actions.reject && actions.reject();
-                }
-
-                console.log("Total Bs:", totalBs, "Total USD:", totalUsd.toFixed(2));
-
-                // DEVOLVER SIEMPRE la promesa de create
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: totalUsd.toFixed(2)
-                        },
-                        description: 'Pedido Pizzería Bambino'
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                // data.orderID debe venir aquí; lo puedes ver en consola
-                console.log("onApprove data:", data);
-                return actions.order.capture().then(function (details) {
-                    document.getElementById("<%= hfPagoAprobado.ClientID %>").value = "1";
-                    alert('Pago completado por ' + details.payer.name.given_name);
-                });
-            },
-            onCancel: function (data) {
-                console.warn("Pago cancelado:", data);
-                alert('Pago cancelado.');
-            },
-            onError: function (err) {
-                console.error("PayPal error:", err);
-                alert('Ocurrió un error con PayPal.');
+                txt = txt.replace("Bs.", "").replace("Bs", "").trim();
+                txt = txt.replace(".", "").replace(",", ".");
+                var valor = parseFloat(txt);
+                if (isNaN(valor)) valor = 0;
+                return valor;
             }
-        }).render('#paypal-button-container');
+
+            if (typeof paypal === "undefined") {
+                console.error("paypal no está definido; revisa si el SDK cargó correctamente.");
+            } else {
+                paypal.Buttons({
+                    createOrder: function (data, actions) {
+                        var totalBs = obtenerTotalNumerico();
+                        var tipoCambio = 7;
+                        var totalUsd = totalBs / tipoCambio;
+
+                        if (totalUsd <= 0) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'El total a pagar debe ser mayor a 0. Agregue productos al pedido.'
+                            });
+                            return actions.reject && actions.reject();
+                        }
+
+                        console.log("Total Bs:", totalBs, "Total USD:", totalUsd.toFixed(2));
+
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: totalUsd.toFixed(2)
+                                },
+                                description: 'Pedido Pizzería Bambino'
+                            }]
+                        });
+                    },
+                    onApprove: function (data, actions) {
+                        console.log("onApprove data:", data);
+                        return actions.order.capture().then(function (details) {
+                            document.getElementById("<%= hfPagoAprobado.ClientID %>").value = "1";
+                            document.getElementById("<%= hfPayPalOrderID.ClientID %>").value = data.orderID;
+                            
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Pago Completado!',
+                                html: `
+                                    <strong>Pagado por:</strong> ${details.payer.name.given_name}<br>
+                                    <strong>Email:</strong> ${details.payer.email_address}<br>
+                                    <strong>ID Transacción:</strong> ${data.orderID}<br><br>
+                                    <p class="text-success">Ahora puede presionar <strong>"Guardar Venta"</strong></p>
+                                `,
+                                confirmButtonText: 'Entendido'
+                            });
+                        });
+                    },
+                    onCancel: function (data) {
+                        console.warn("Pago cancelado:", data);
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Pago Cancelado',
+                            text: 'El pago fue cancelado. Puede intentarlo nuevamente.'
+                        });
+                    },
+                    onError: function (err) {
+                        console.error("PayPal error:", err);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error en PayPal',
+                            text: 'Ocurrió un error con el procesamiento del pago. Inténtelo nuevamente.'
+                        });
+                    }
+                }).render('#paypal-button-container');
             }
         </script>
 
-
-
-
-
-        <!-- Google Maps JS (sin callback) -->
-        <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsxWxTypWZuxQm7QFdzZjhQ3MLAsLVhM8">
-        </script>
-
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsxWxTypWZuxQm7QFdzZjhQ3MLAsLVhM8"></script>
     </form>
 </body>
 </html>
