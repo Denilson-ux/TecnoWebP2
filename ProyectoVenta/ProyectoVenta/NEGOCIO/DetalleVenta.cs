@@ -95,7 +95,7 @@ namespace ProyectoVenta.NEGOCIO
             if (id_tamanio > 0)
                 parametroInt(id_tamanio, "id_tam");
             else
-                parametroInt(0, "id_tam"); // NULL para productos que no son pizza
+                parametroInt(0, "id_tam");
 
             parametroInt(cantidad, "cant");
             parametroDecimal(precio_unitario, "precio");
@@ -109,6 +109,13 @@ namespace ProyectoVenta.NEGOCIO
         {
             iniciarSP("listarDetallesPorVenta");
             parametroInt(id_venta, "id_ven");
+            return mostrarData();
+        }
+
+        public DataTable listarPorVenta(int idVenta)
+        {
+            iniciarSP("listarDetallesPorVenta");
+            parametroInt(idVenta, "id_ven");
             return mostrarData();
         }
     }
