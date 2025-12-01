@@ -1,7 +1,6 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using ProyectoVenta.NEGOCIO;
 
 namespace ProyectoVenta.PRESENTACION
@@ -14,8 +13,6 @@ namespace ProyectoVenta.PRESENTACION
         {
             if (!IsPostBack)
             {
-                txtFechaDesde.Text = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
-                txtFechaHasta.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 cargarVentas();
             }
         }
@@ -26,39 +23,50 @@ namespace ProyectoVenta.PRESENTACION
             {
                 DataTable dt = objVenta.listar();
                 
+                // Validar si hay datos
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    gvVentas.DataSource = null;
+                    gvVentas.DataBind();
+                    lblTotalGeneral.Text = "Bs. 0.00";
+                    return;
+                }
+                
+                // Filtrar por número si hay búsqueda
                 if (!string.IsNullOrEmpty(txtBuscarNumero.Text))
                 {
-                    dt = dt.Select("numero_venta LIKE '%" + txtBuscarNumero.Text + "%'").CopyToDataTable();
+                    DataView dv = dt.DefaultView;
+                    dv.RowFilter = "numero_venta LIKE '%" + txtBuscarNumero.Text + "%'";
+                    dt = dv.ToTable();
                 }
 
+                // Filtrar por fecha
                 if (!string.IsNullOrEmpty(txtFechaDesde.Text) && !string.IsNullOrEmpty(txtFechaHasta.Text))
                 {
-                    DateTime desde = DateTime.Parse(txtFechaDesde.Text);
-                    DateTime hasta = DateTime.Parse(txtFechaHasta.Text).AddDays(1);
-                    dt = dt.Select("fecha_venta >= #" + desde.ToString("MM/dd/yyyy") + "# AND fecha_venta < #" + hasta.ToString("MM/dd/yyyy") + "#").CopyToDataTable();
+                    DateTime fechaDesde = DateTime.Parse(txtFechaDesde.Text);
+                    DateTime fechaHasta = DateTime.Parse(txtFechaHasta.Text).AddDays(1);
+                    
+                    DataView dv = dt.DefaultView;
+                    dv.RowFilter = string.Format("fecha_venta >= #{0}# AND fecha_venta < #{1}#",
+                        fechaDesde.ToString("MM/dd/yyyy"),
+                        fechaHasta.ToString("MM/dd/yyyy"));
+                    dt = dv.ToTable();
                 }
 
                 gvVentas.DataSource = dt;
                 gvVentas.DataBind();
 
-                if (dt.Rows.Count > 0)
+                // Calcular total general
+                decimal totalGeneral = 0;
+                foreach (DataRow row in dt.Rows)
                 {
-                    decimal totalGeneral = 0;
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        totalGeneral += Convert.ToDecimal(row["total"]);
-                    }
-                    lblTotal.Text = $"Total de {dt.Rows.Count} ventas: Bs. {totalGeneral:N2}";
+                    totalGeneral += Convert.ToDecimal(row["total"]);
                 }
-                else
-                {
-                    lblTotal.Text = "No hay ventas en el rango seleccionado.";
-                }
+                lblTotalGeneral.Text = "Bs. " + totalGeneral.ToString("N2");
             }
             catch (Exception ex)
             {
-                lblTotal.Text = "Error al cargar ventas: " + ex.Message;
-                lblTotal.CssClass = "text-danger fw-bold";
+                Response.Write("<script>alert('Error al cargar ventas: " + ex.Message + "');</script>");
             }
         }
 
@@ -70,52 +78,26 @@ namespace ProyectoVenta.PRESENTACION
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtBuscarNumero.Text = "";
-            txtFechaDesde.Text = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
-            txtFechaHasta.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtFechaDesde.Text = "";
+            txtFechaHasta.Text = "";
             cargarVentas();
         }
 
-        protected void gvVentas_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                DataRowView rowView = (DataRowView)e.Row.DataItem;
-                string estado = rowView["estado_venta"].ToString();
-
-                switch (estado.ToLower())
-                {
-                    case "pendiente":
-                        e.Row.CssClass = "estado-pendiente";
-                        break;
-                    case "en proceso":
-                        e.Row.CssClass = "estado-proceso";
-                        break;
-                    case "completado":
-                    case "entregado":
-                        e.Row.CssClass = "estado-completado";
-                        break;
-                    case "cancelado":
-                        e.Row.CssClass = "estado-cancelado";
-                        break;
-                }
-            }
-        }
-
-        protected string GetEstadoColor(string estado)
+        protected string GetEstadoBadgeClass(string estado)
         {
             switch (estado.ToLower())
             {
                 case "pendiente":
-                    return "warning";
-                case "en proceso":
-                    return "info";
+                    return "badge-pendiente";
                 case "completado":
                 case "entregado":
-                    return "success";
+                    return "badge-completado";
+                case "en proceso":
+                    return "badge-proceso";
                 case "cancelado":
-                    return "danger";
+                    return "badge-cancelado";
                 default:
-                    return "secondary";
+                    return "bg-secondary";
             }
         }
     }
