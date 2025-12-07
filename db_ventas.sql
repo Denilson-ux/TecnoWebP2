@@ -299,6 +299,38 @@ END;;
 DELIMITER ;
 
 -- =====================================================
+-- PROCEDIMIENTO PARA DESCONTAR STOCK
+-- =====================================================
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `descontarStockProducto`;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `descontarStockProducto`(
+  IN p_id_producto INT,
+  IN p_cantidad INT
+)
+BEGIN
+  DECLARE stock_actual INT;
+  
+  -- Obtener el stock actual del producto
+  SELECT stock INTO stock_actual
+  FROM productos
+  WHERE id_producto = p_id_producto;
+  
+  -- Verificar que hay suficiente stock
+  IF stock_actual >= p_cantidad THEN
+    -- Descontar la cantidad del stock
+    UPDATE productos
+    SET stock = stock - p_cantidad
+    WHERE id_producto = p_id_producto;
+  ELSE
+    -- Si no hay suficiente stock, lanzar un error
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Stock insuficiente para realizar la venta';
+  END IF;
+END;;
+DELIMITER ;
+
+-- =====================================================
 -- PROCEDIMIENTOS ALMACENADOS PARA TIPOS
 -- =====================================================
 
@@ -505,23 +537,43 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `guardarDetalleVenta`(
   IN notas VARCHAR(500)
 )
 BEGIN
-  INSERT INTO detalle_ventas (
-    id_venta,
-    id_producto,
-    id_tamanio,
-    cantidad,
-    precio_unitario,
-    subtotal,
-    notas_especiales
-  ) VALUES (
-    id_ven,
-    id_prod,
-    id_tam,
-    cant,
-    precio,
-    sub,
-    notas
-  );
+  DECLARE stock_actual INT;
+  
+  -- Verificar el stock actual del producto
+  SELECT stock INTO stock_actual
+  FROM productos
+  WHERE id_producto = id_prod;
+  
+  -- Verificar que hay suficiente stock
+  IF stock_actual >= cant THEN
+    -- Insertar el detalle de la venta
+    INSERT INTO detalle_ventas (
+      id_venta,
+      id_producto,
+      id_tamanio,
+      cantidad,
+      precio_unitario,
+      subtotal,
+      notas_especiales
+    ) VALUES (
+      id_ven,
+      id_prod,
+      id_tam,
+      cant,
+      precio,
+      sub,
+      notas
+    );
+    
+    -- Descontar el stock del producto automáticamente
+    UPDATE productos
+    SET stock = stock - cant
+    WHERE id_producto = id_prod;
+  ELSE
+    -- Si no hay suficiente stock, lanzar un error
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Stock insuficiente para realizar la venta';
+  END IF;
 END;;
 DELIMITER ;
 
