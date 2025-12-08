@@ -275,7 +275,9 @@ namespace ProyectoVenta.PRESENTACION
                         subtotal += item.Subtotal;
                     objVenta.Subtotal = subtotal;
                     objVenta.Total = subtotal;
-                    objVenta.EstadoVenta = "Pendiente";
+                    
+                    // CAMBIO: Si el pago ya fue aprobado, el estado es "Completado" en lugar de "Pendiente"
+                    objVenta.EstadoVenta = "Completado";
 
                     if (objVenta.guardar())
                     {
