@@ -19,6 +19,7 @@
                     <a class="navbar-brand" href="#">PIZZERIA BAMBINO - PEDIDO</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link" Text="Tipo" />
+                        <!--<asp:HyperLink runat="server" NavigateUrl="#" CssClass="nav-link" Text="Denilson" />-->
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmCliente.aspx" CssClass="nav-link" Text="Clientes" />
                         <asp:HyperLink runat="server" NavigateUrl="~/frmVenta.aspx" CssClass="nav-link active" Text="Pedidos" />
@@ -28,7 +29,7 @@
             </nav>
 
             <h2 class="text-center mb-4">REGISTRO DE PEDIDO</h2>
-
+            <h2 class="bg-dark text-center text-info">Denilson</h2>
             <div class="row mb-3">
                 <div class="col-md-8">
                     <div class="card">
@@ -370,7 +371,7 @@
             </div>
           </div>
         </div>
-
+        <!------------------------------------------PAYPA------------------------------------------>
         <script src="https://www.paypal.com/sdk/js?client-id=Aafq8M27njB8pt4MrjbFsGE74YukRHpMuhCuHMS8SA6x6Fwf7z9BDCnaBPeOFTSr19WXQEXtgNcd6RK_&currency=USD"></script>
 
 
@@ -422,11 +423,11 @@
                             
                             Swal.fire({
                                 icon: 'success',
-                                title: '¡Pago Completado!',
+                                title: 'Pago Completado',
                                 html: `
                                     <strong>Pagado por:</strong> ${details.payer.name.given_name}<br>
                                     <strong>Email:</strong> ${details.payer.email_address}<br>
-                                    <strong>ID Transacción:</strong> ${data.orderID}<br><br>
+                                    <strong>ID Transaccion:</strong> ${data.orderID}<br><br>
                                     <p class="text-success">Ahora puede presionar <strong>"Guardar Venta"</strong></p>
                                 `,
                                 confirmButtonText: 'Entendido'
@@ -452,7 +453,7 @@
                 }).render('#paypal-button-container');
             }
         </script>
-
+        <!------------------------------------------GOOGLEMAP------------------------------------------>
         <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsxWxTypWZuxQm7QFdzZjhQ3MLAsLVhM8"></script>
     </form>
 </body>

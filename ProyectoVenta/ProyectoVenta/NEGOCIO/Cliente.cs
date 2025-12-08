@@ -17,7 +17,7 @@ namespace ProyectoVenta.NEGOCIO
         private string email;       // Email del cliente
         private string direccion;
         private string referencia;  // Referencia de la dirección
-        private string zona;        // Zona de la ciudad para delivery
+        private string zona;        // Zona de la ciudad
 
         public Cliente()
         {

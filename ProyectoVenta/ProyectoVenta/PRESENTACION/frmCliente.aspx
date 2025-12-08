@@ -12,7 +12,7 @@
         <div class="container mt-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger mb-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">🍕 PIZZERÍA BAMBINO</a>
+                    <a class="navbar-brand" href="#">PIZZERÍA BAMBINO</a>
                     <div class="navbar-nav">
                         <asp:HyperLink runat="server" NavigateUrl="~/frmTipo.aspx" CssClass="nav-link" Text="Tipo"/>
                         <asp:HyperLink runat="server" NavigateUrl="~/frmProducto.aspx" CssClass="nav-link" Text="Productos"/>
@@ -22,7 +22,7 @@
                 </div>
             </nav>
             
-            <h2 class="text-center mb-4">👥 GESTIÓN DE CLIENTES</h2>
+            <h2 class="text-center mb-4">GESTIÓN DE CLIENTES</h2>
             
             <div class="card mb-4">
                 <div class="card-header bg-info text-white">
@@ -81,10 +81,12 @@
                         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click"/>
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" OnClick="btnModificar_Click"/>
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"/>
+                        <asp:button runat="server" Text="Prueba" CssClass="btn btn-primary" Visible="false"/>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- este es un comentario -->
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     <h5>Buscar Cliente</h5>
@@ -105,7 +107,7 @@
                         <asp:BoundField DataField="apellido" HeaderText="Apellidos" />
                         <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
                         <asp:BoundField DataField="email" HeaderText="Email" />
-                        <asp:BoundField DataField="zona" HeaderText="Zona" />
+                        <asp:BoundField DataField="zona" HeaderText="Zona" visible="true"/>
                         <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" ButtonType="Button" />
                     </Columns>
                     </asp:GridView>

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace ProyectoVenta.DATOS  // ← Cambiar namespace
+namespace ProyectoVenta.DATOS
 {
     public class Conexion
     {

@@ -129,6 +129,37 @@ namespace ProyectoVenta.PRESENTACION
             {
                 if (validarDetalle())
                 {
+                    // ========== VALIDACIÓN DE STOCK ==========
+                    int idProducto = int.Parse(ddlProducto.SelectedValue);
+                    int cantidadSolicitada = int.Parse(txtCantidad.Text);
+
+                    // Obtener el stock actual del producto desde la BD
+                    DataTable dtProducto = objProducto.Buscar("");
+                    DataRow[] rowsProducto = dtProducto.Select("id_producto = " + idProducto);
+
+                    if (rowsProducto.Length > 0)
+                    {
+                        int stockDisponible = Convert.ToInt32(rowsProducto[0]["stock"]);
+
+                        // Calcular cuánto ya se agregó en el carrito
+                        int cantidadEnCarrito = 0;
+                        foreach (var detalle in listaDetalles)
+                        {
+                            if (detalle.IdProducto == idProducto)
+                                cantidadEnCarrito += detalle.Cantidad;
+                        }
+
+                        // Validar si hay suficiente stock
+                        int stockRestante = stockDisponible - cantidadEnCarrito;
+
+                        if (cantidadSolicitada > stockRestante)
+                        {
+                            mostrarMensaje($"Stock insuficiente. Disponible: {stockRestante} unidades", "danger");
+                            return; // Detiene la ejecución y NO agrega al carrito
+                        }
+                    }
+                    // ========== FIN VALIDACIÓN DE STOCK ==========
+
                     ItemDetalle item = new ItemDetalle
                     {
                         IdProducto = int.Parse(ddlProducto.SelectedValue),
@@ -162,6 +193,7 @@ namespace ProyectoVenta.PRESENTACION
                 mostrarMensaje("Error al agregar: " + ex.Message, "danger");
             }
         }
+
 
         protected void gvDetalle_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
